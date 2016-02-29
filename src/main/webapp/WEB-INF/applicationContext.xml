@@ -1,0 +1,25 @@
+
+
+<!-- I have forgotten about this as why we need this and what is the difference 
+	between spring-servlet.xml and applicationContext.xml Things that we have 
+	done here are:- defined the location of our jpa repositories defined the 
+	dataSource and defined the url i.e. the location of our database. 
+	
+	We have 
+	defined the entityManagerFactory also,(I am unable to recall right now, where 
+	I have used entity manager , however I remember using the same in our code 
+	somewhere before and then we replaced it i guess with something else We have 
+	defined transactionManager, I have only used it as annotation but don't know 
+	what is the big deal about the transactions -->
+	
+	
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+	default-autowire="byName">
+
+	<context:annotation-config />
+	
+</beans>

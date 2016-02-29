@@ -1,0 +1,39 @@
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+
+
+	<!-- This is the servlet which connects my Controllers to spring since spring 
+		servlet class communicate wit my controllers in this framework -->
+	<servlet>
+		<servlet-name>spring</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<!-- It means that for any url pattern it will call spring servlet which 
+		is defined above -->
+	<servlet-mapping>
+		<servlet-name>spring</servlet-name>
+		<url-pattern>/*</url-pattern>
+	</servlet-mapping>
+
+	<!-- I still don't know why this was used only remember that it was used 
+		to redirect all the jsp requests to /view/* folder something need to recall 
+		it too...!! -->
+	<servlet-mapping>
+		<servlet-name>jsp</servlet-name>
+		<url-pattern>/view/*</url-pattern>
+	</servlet-mapping>
+
+
+	<!-- This is the listener class which listens to every request and if there 
+		is any request then it will redirect it to spring servlet, this is the point 
+		from where it all starts -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+
+</web-app>
