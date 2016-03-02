@@ -1,84 +1,80 @@
 package in.ac.jmi.entities;
 
-import java.util.Date;
+import in.ac.jmi.constants.Gender;
+import in.ac.jmi.constants.MediumOfExamination;
+import in.ac.jmi.constants.Religion;
 
+import java.util.Date;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
-public class Student {
+@Table(name="STUDENT")
+public class Student extends BaseEntity{
 	
-	@Column
+	@Column(name="NAME")
 	private String name;
 	
-	@Column
+	@Column(name="DATE_OF_BIRTH")
 	private Date dateOfBirth;
 	
-	@Column
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="STUDENT_PLACE_OF_BIRTH")
 	private PlaceOfBirth placeOfBirth;
 	
-	@Column
+	@Column(name="NATIONALITY")
 	private String Nationality;
 	
-	@Column
-	private String religion;
+	@Column(name="RELIGION")
+	private Religion religion;
 	
-	@Column
-	private String gender;
+	@Column(name="GENDER")
+	private Gender gender;
 	
-	@Column
+	@Column(name="FATHER_NAME")
 	private String fatherName;
 	
-	@Column
+	@Column(name="MOTHER_NAME")
 	private String motherName;
 	
-	@Column
+	@Column(name="SPOUSE_NAME")
 	private String spouseName;
 	
-	@Column
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="STUDENT_HOME_ADDRESS")
 	private Address homeAddress;
 	
-	@Column
+	@JoinColumn(name="STUDENT_PERMANENT_ADDRESS")
+	@OneToOne(cascade=CascadeType.ALL)
 	private Address permanentAddress;
 	
-	@Column
-	private String mediumOfExamination;
+	@Column(name="MEDIUM_OF_EXAMINATION")
+	private MediumOfExamination mediumOfExamination;
 	
-	@Column
+	@Column(name="ENROLLMENT_NUMBER")
 	private String enrollmentNumber;
 	
-	@Column
+	@Column(name="QUOTA_FLAG")
 	private boolean quotaFlag;
 	
-	@Column
+	@Column(name="DISQUALIFIED_FLAG")
 	private boolean disqualifiedFlag;
+	
+	@OneToMany(cascade=CascadeType.ALL)
+	private Set<Subject> subjectTaken;
+	
+	@Column(name="APPROVED_BY_HOD")
+	private boolean approveFlag;
 
-	public Student(){
-		
-	}
-	public Student(String name, Date dateOfBirth, PlaceOfBirth placeOfBirth,
-			String nationality, String religion, String gender,
-			String fatherName, String motherName, String spouseName,
-			Address homeAddress, Address permanentAddress,
-			String mediumOfExamination, String enrollmentNumber,
-			boolean quotaFlag, boolean disqualifiedFlag) {
-		super();
-		this.name = name;
-		this.dateOfBirth = dateOfBirth;
-		this.placeOfBirth = placeOfBirth;
-		Nationality = nationality;
-		this.religion = religion;
-		this.gender = gender;
-		this.fatherName = fatherName;
-		this.motherName = motherName;
-		this.spouseName = spouseName;
-		this.homeAddress = homeAddress;
-		this.permanentAddress = permanentAddress;
-		this.mediumOfExamination = mediumOfExamination;
-		this.enrollmentNumber = enrollmentNumber;
-		this.quotaFlag = quotaFlag;
-		this.disqualifiedFlag = disqualifiedFlag;
-	}
+	public Student(){}
+	
 
 	public String getName() {
 		return name;
@@ -96,11 +92,11 @@ public class Student {
 		return Nationality;
 	}
 
-	public String getReligion() {
+	public Religion getReligion() {
 		return religion;
 	}
 
-	public String getGender() {
+	public Gender getGender() {
 		return gender;
 	}
 
@@ -124,7 +120,7 @@ public class Student {
 		return permanentAddress;
 	}
 
-	public String getMediumOfExamination() {
+	public MediumOfExamination getMediumOfExamination() {
 		return mediumOfExamination;
 	}
 
@@ -138,6 +134,16 @@ public class Student {
 
 	public boolean isDisqualifiedFlag() {
 		return disqualifiedFlag;
+	}
+
+
+	public boolean isApproveFlag() {
+		return approveFlag;
+	}
+
+
+	public void setApproveFlag(boolean approveFlag) {
+		this.approveFlag = approveFlag;
 	}
 
 }

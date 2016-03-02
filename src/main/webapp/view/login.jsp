@@ -21,11 +21,11 @@
     </tr>
     <tr>
       <td>User Id</td>
-      <td><input type="text" name="uname"></td>
+      <td><input type="text" name="user_name"></td>
     </tr>
     <tr>
       <td>Password</td>
-      <td><input type="password" name="pass"></td>
+      <td><input type="password" name="password"></td>
     </tr>
         <tr>
       <td colspan="2"><div align="center"><input type="submit" name="Submit"></div></td>

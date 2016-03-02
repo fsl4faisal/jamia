@@ -2,22 +2,27 @@ package in.ac.jmi.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
-public class Address {
+@Table(name="ADDRESS")
+public class Address extends BaseEntity{
 	
-	@Column
+	@Column(name="STREET")
 	private String street;
 	
-	@Column
+	@Column(name="CITY")
 	private String city;
 	
-	@Column
+	@Column(name="STATE")
 	private String state;
 	
-	@Column
+	@Column(name="PINCODE")
 	private int pincode;
 
+	public Address(){}
+	
+	
 	public Address(String street, String city, String state, int pincode) {
 		super();
 		this.street = street;

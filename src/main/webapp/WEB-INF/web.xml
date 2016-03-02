@@ -1,8 +1,8 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	version="3.0">
-
 
 	<!-- This is the servlet which connects my Controllers to spring since spring 
 		servlet class communicate wit my controllers in this framework -->
@@ -27,6 +27,23 @@
 		<url-pattern>/view/*</url-pattern>
 	</servlet-mapping>
 
+	<!-- openEntityManagerInViewFilter was used to make available the entityManager 
+		object in the entire scope of spring including view -->
+	<filter>
+		<filter-name>openEntityManagerInViewFilter</filter-name>
+		<filter-class>org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter</filter-class>
+		<init-param>
+			<param-name>entityManagerFactoryBeanName</param-name>
+			<param-value>entityManagerFactory</param-value>
+		</init-param>
+	</filter>
+
+	<!-- It means openEntityManagerInViewFilter will be available to all the 
+		url patterns and would call above filter -->
+	<filter-mapping>
+		<filter-name>openEntityManagerInViewFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 
 	<!-- This is the listener class which listens to every request and if there 
 		is any request then it will redirect it to spring servlet, this is the point 

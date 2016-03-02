@@ -3,23 +3,47 @@
 <!-- I have forgotten about this as why we need this and what is the difference 
 	between spring-servlet.xml and applicationContext.xml Things that we have 
 	done here are:- defined the location of our jpa repositories defined the 
-	dataSource and defined the url i.e. the location of our database. 
-	
-	We have 
+	dataSource and defined the url i.e. the location of our database. We have 
 	defined the entityManagerFactory also,(I am unable to recall right now, where 
 	I have used entity manager , however I remember using the same in our code 
 	somewhere before and then we replaced it i guess with something else We have 
 	defined transactionManager, I have only used it as annotation but don't know 
 	what is the big deal about the transactions -->
-	
-	
+
+
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa" xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd"
 	default-autowire="byName">
 
 	<context:annotation-config />
-	
+	<tx:annotation-driven />
+
+	<jpa:repositories base-package="in.ac.jmi.repositories" />
+
+	<bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource"
+		destroy-method="close">
+		<property name="datasourceBean">
+			<bean class="org.hsqldb.jdbc.JDBCDataSource">
+				<property name="url" value="jdbc:hsqldb:file:target/data/jamiadb" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<property name="generateDdl" value="true" />
+				<property name="databasePlatform" value="org.hibernate.dialect.HSQLDialect" />
+			</bean>
+		</property>
+	</bean>
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager" />
+
 </beans>
