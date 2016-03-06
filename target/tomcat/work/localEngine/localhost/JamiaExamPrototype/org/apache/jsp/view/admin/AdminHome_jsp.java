@@ -60,48 +60,60 @@ public final class AdminHome_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("<html>\r\n");
       out.write("<head>\r\n");
       out.write("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\">\r\n");
+      out.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"style/style.css\" />\r\n");
       out.write("<title>Admin Home</title>\r\n");
       out.write("</head>\r\n");
       out.write("<body>\r\n");
+      out.write("\t<div class=\"container\">\r\n");
+      out.write("\t\t<div class=\"content\">\r\n");
+      out.write("\t\t\t<h1>Banner</h1>\r\n");
+      out.write("\t\t\t<hr />\r\n");
+      out.write("\t\t\t<center>\r\n");
+      out.write("\t\t\t\t<font size=\"5\"><a href=\"index.htm\">Home</a> | <a\r\n");
+      out.write("\t\t\t\t\thref=\"about.htm\">About</a> | <a href=\"contact.htm\">Contact</a></font>\r\n");
+      out.write("\t\t\t</center>\r\n");
+      out.write("\t\t\t<hr />\r\n");
       out.write("\r\n");
-      out.write("\t");
+      out.write("\r\n");
+      out.write("\t\t\t");
       out.write("\r\n");
       out.write("\r\n");
-      out.write("\t<h1>All Administrative User Details</h1>\r\n");
-      out.write("\t<ul>\r\n");
-      out.write("\t\t");
+      out.write("\t\t\t<h1>All Administrative User Details</h1>\r\n");
+      out.write("\t\t\t<ul>\r\n");
+      out.write("\t\t\t\t");
       if (_jspx_meth_c_005fforEach_005f0(_jspx_page_context))
         return;
       out.write("\r\n");
-      out.write("\t</ul>\r\n");
-      out.write("\t<a href=\"user?add\">Add a new Administrative User</a>\r\n");
+      out.write("\t\t\t</ul>\r\n");
+      out.write("\t\t\t<a href=\"user?add\">Add a new User</a>\r\n");
       out.write("\r\n");
       out.write("\r\n");
-      out.write("\t");
+      out.write("\t\t\t");
       out.write("\r\n");
       out.write("\r\n");
-      out.write("\t\r\n");
-      out.write("\t<h1>All Subject Details</h1>\r\n");
-      out.write("\t<ul>\r\n");
-      out.write("\t\t");
+      out.write("\r\n");
+      out.write("\t\t\t<h1>All Subject Details</h1>\r\n");
+      out.write("\t\t\t<ul>\r\n");
+      out.write("\t\t\t\t");
       if (_jspx_meth_c_005fforEach_005f1(_jspx_page_context))
         return;
       out.write("\r\n");
-      out.write("\t</ul>\r\n");
-      out.write("\t<a href=\"subject?add\">Add a new Subject</a>\r\n");
-      out.write("\t\r\n");
-      out.write("\t");
+      out.write("\t\t\t</ul>\r\n");
+      out.write("\t\t\t<a href=\"subject?add\">Add a new Subject</a>\r\n");
       out.write("\r\n");
-      out.write("\t\r\n");
-      out.write("\t\t<h1>All Student Details</h1>\r\n");
-      out.write("\t<ul>\r\n");
-      out.write("\t\t");
+      out.write("\t\t\t");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\t\t\t<h1>All Student Details</h1>\r\n");
+      out.write("\t\t\t<ul>\r\n");
+      out.write("\t\t\t\t");
       if (_jspx_meth_c_005fforEach_005f2(_jspx_page_context))
         return;
       out.write("\r\n");
-      out.write("\t</ul>\r\n");
-      out.write("\t<a href=\"student?add\">Add a new Student</a>\r\n");
-      out.write("\t\r\n");
+      out.write("\t\t\t</ul>\r\n");
+      out.write("\t\t\t<a href=\"student?add\">Add a new Student</a>\r\n");
+      out.write("\t\t</div>\r\n");
+      out.write("\t</div>\r\n");
       out.write("\r\n");
       out.write("</body>\r\n");
       out.write("</html>");
@@ -125,23 +137,23 @@ public final class AdminHome_jsp extends org.apache.jasper.runtime.HttpJspBase
     org.apache.taglibs.standard.tag.rt.core.ForEachTag _jspx_th_c_005fforEach_005f0 = (org.apache.taglibs.standard.tag.rt.core.ForEachTag) _005fjspx_005ftagPool_005fc_005fforEach_0026_005fvar_005fitems.get(org.apache.taglibs.standard.tag.rt.core.ForEachTag.class);
     _jspx_th_c_005fforEach_005f0.setPageContext(_jspx_page_context);
     _jspx_th_c_005fforEach_005f0.setParent(null);
-    // /view/admin/AdminHome.jsp(16,2) name = var type = java.lang.String reqTime = false required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /view/admin/AdminHome.jsp(27,4) name = var type = java.lang.String reqTime = false required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_c_005fforEach_005f0.setVar("user");
-    // /view/admin/AdminHome.jsp(16,2) name = items type = javax.el.ValueExpression reqTime = true required = false fragment = false deferredValue = true expectedTypeName = java.lang.Object deferredMethod = false methodSignature = null
-    _jspx_th_c_005fforEach_005f0.setItems(new org.apache.jasper.el.JspValueExpression("/view/admin/AdminHome.jsp(16,2) '${users}'",_el_expressionfactory.createValueExpression(_jspx_page_context.getELContext(),"${users}",java.lang.Object.class)).getValue(_jspx_page_context.getELContext()));
+    // /view/admin/AdminHome.jsp(27,4) name = items type = javax.el.ValueExpression reqTime = true required = false fragment = false deferredValue = true expectedTypeName = java.lang.Object deferredMethod = false methodSignature = null
+    _jspx_th_c_005fforEach_005f0.setItems(new org.apache.jasper.el.JspValueExpression("/view/admin/AdminHome.jsp(27,4) '${users}'",_el_expressionfactory.createValueExpression(_jspx_page_context.getELContext(),"${users}",java.lang.Object.class)).getValue(_jspx_page_context.getELContext()));
     int[] _jspx_push_body_count_c_005fforEach_005f0 = new int[] { 0 };
     try {
       int _jspx_eval_c_005fforEach_005f0 = _jspx_th_c_005fforEach_005f0.doStartTag();
       if (_jspx_eval_c_005fforEach_005f0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
         do {
           out.write("\r\n");
-          out.write("\t\t\t<li><a href=\"user?id=");
+          out.write("\t\t\t\t\t<li><a href=\"user?id=");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${user.id}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
           out.write('"');
           out.write('>');
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${user.name}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
           out.write("</a>\r\n");
-          out.write("\t\t");
+          out.write("\t\t\t\t");
           int evalDoAfterBody = _jspx_th_c_005fforEach_005f0.doAfterBody();
           if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
             break;
@@ -169,23 +181,23 @@ public final class AdminHome_jsp extends org.apache.jasper.runtime.HttpJspBase
     org.apache.taglibs.standard.tag.rt.core.ForEachTag _jspx_th_c_005fforEach_005f1 = (org.apache.taglibs.standard.tag.rt.core.ForEachTag) _005fjspx_005ftagPool_005fc_005fforEach_0026_005fvar_005fitems.get(org.apache.taglibs.standard.tag.rt.core.ForEachTag.class);
     _jspx_th_c_005fforEach_005f1.setPageContext(_jspx_page_context);
     _jspx_th_c_005fforEach_005f1.setParent(null);
-    // /view/admin/AdminHome.jsp(28,2) name = var type = java.lang.String reqTime = false required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /view/admin/AdminHome.jsp(39,4) name = var type = java.lang.String reqTime = false required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_c_005fforEach_005f1.setVar("subject");
-    // /view/admin/AdminHome.jsp(28,2) name = items type = javax.el.ValueExpression reqTime = true required = false fragment = false deferredValue = true expectedTypeName = java.lang.Object deferredMethod = false methodSignature = null
-    _jspx_th_c_005fforEach_005f1.setItems(new org.apache.jasper.el.JspValueExpression("/view/admin/AdminHome.jsp(28,2) '${subjects}'",_el_expressionfactory.createValueExpression(_jspx_page_context.getELContext(),"${subjects}",java.lang.Object.class)).getValue(_jspx_page_context.getELContext()));
+    // /view/admin/AdminHome.jsp(39,4) name = items type = javax.el.ValueExpression reqTime = true required = false fragment = false deferredValue = true expectedTypeName = java.lang.Object deferredMethod = false methodSignature = null
+    _jspx_th_c_005fforEach_005f1.setItems(new org.apache.jasper.el.JspValueExpression("/view/admin/AdminHome.jsp(39,4) '${subjects}'",_el_expressionfactory.createValueExpression(_jspx_page_context.getELContext(),"${subjects}",java.lang.Object.class)).getValue(_jspx_page_context.getELContext()));
     int[] _jspx_push_body_count_c_005fforEach_005f1 = new int[] { 0 };
     try {
       int _jspx_eval_c_005fforEach_005f1 = _jspx_th_c_005fforEach_005f1.doStartTag();
       if (_jspx_eval_c_005fforEach_005f1 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
         do {
           out.write("\r\n");
-          out.write("\t\t\t<li><a href=\"subject?id=");
+          out.write("\t\t\t\t\t<li><a href=\"subject?id=");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${subject.id}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
           out.write('"');
           out.write('>');
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${subject.paperName}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
           out.write("</a>\r\n");
-          out.write("\t\t");
+          out.write("\t\t\t\t");
           int evalDoAfterBody = _jspx_th_c_005fforEach_005f1.doAfterBody();
           if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
             break;
@@ -213,23 +225,23 @@ public final class AdminHome_jsp extends org.apache.jasper.runtime.HttpJspBase
     org.apache.taglibs.standard.tag.rt.core.ForEachTag _jspx_th_c_005fforEach_005f2 = (org.apache.taglibs.standard.tag.rt.core.ForEachTag) _005fjspx_005ftagPool_005fc_005fforEach_0026_005fvar_005fitems.get(org.apache.taglibs.standard.tag.rt.core.ForEachTag.class);
     _jspx_th_c_005fforEach_005f2.setPageContext(_jspx_page_context);
     _jspx_th_c_005fforEach_005f2.setParent(null);
-    // /view/admin/AdminHome.jsp(38,2) name = var type = java.lang.String reqTime = false required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /view/admin/AdminHome.jsp(49,4) name = var type = java.lang.String reqTime = false required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_c_005fforEach_005f2.setVar("student");
-    // /view/admin/AdminHome.jsp(38,2) name = items type = javax.el.ValueExpression reqTime = true required = false fragment = false deferredValue = true expectedTypeName = java.lang.Object deferredMethod = false methodSignature = null
-    _jspx_th_c_005fforEach_005f2.setItems(new org.apache.jasper.el.JspValueExpression("/view/admin/AdminHome.jsp(38,2) '${students}'",_el_expressionfactory.createValueExpression(_jspx_page_context.getELContext(),"${students}",java.lang.Object.class)).getValue(_jspx_page_context.getELContext()));
+    // /view/admin/AdminHome.jsp(49,4) name = items type = javax.el.ValueExpression reqTime = true required = false fragment = false deferredValue = true expectedTypeName = java.lang.Object deferredMethod = false methodSignature = null
+    _jspx_th_c_005fforEach_005f2.setItems(new org.apache.jasper.el.JspValueExpression("/view/admin/AdminHome.jsp(49,4) '${students}'",_el_expressionfactory.createValueExpression(_jspx_page_context.getELContext(),"${students}",java.lang.Object.class)).getValue(_jspx_page_context.getELContext()));
     int[] _jspx_push_body_count_c_005fforEach_005f2 = new int[] { 0 };
     try {
       int _jspx_eval_c_005fforEach_005f2 = _jspx_th_c_005fforEach_005f2.doStartTag();
       if (_jspx_eval_c_005fforEach_005f2 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
         do {
           out.write("\r\n");
-          out.write("\t\t\t<li><a href=\"student?id=");
+          out.write("\t\t\t\t\t<li><a href=\"student?id=");
           out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${student.id}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
           out.write('"');
           out.write('>');
-          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${student.name}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
+          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${student.studentName}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
           out.write("</a>\r\n");
-          out.write("\t\t");
+          out.write("\t\t\t\t");
           int evalDoAfterBody = _jspx_th_c_005fforEach_005f2.doAfterBody();
           if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
             break;

@@ -1,5 +1,7 @@
 package in.ac.jmi.entities;
 
+import in.ac.jmi.constants.Role;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -12,11 +14,11 @@ public class User extends BaseEntity{
 	private String name;
 	
 	@Column(name="ROLE")
-	private String role;
+	private Role role;
 	
 	public User(){}
 	
-	public User(String name, String role) {
+	public User(String name, Role role) {
 		super();
 		this.name = name;
 		this.role = role;
@@ -27,10 +29,10 @@ public class User extends BaseEntity{
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getRole() {
+	public Role getRole() {
 		return role;
 	}
-	public void setRole(String role) {
+	public void setRole(Role role) {
 		this.role = role;
 	}
 	

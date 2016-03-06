@@ -1,7 +1,7 @@
 package in.ac.jmi.constants;
 
 public enum Role {
-	ADMIN("Admin", "ADMIN"), STUDENT("Student", "STUDENT"), HEADOFDEPARTMENT("Head of Department", "HOD");
+	ADMIN("Admin", "ADMIN"), HEAD_OF_DEPARTMENT("Head of Department", "HEAD_OF_DEPARTMENT");
 
 	private String name, value;
 

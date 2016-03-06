@@ -5,42 +5,54 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="style/style.css" />
 <title>Admin Home</title>
 </head>
 <body>
+	<div class="container">
+		<div class="content">
+			<h1>Banner</h1>
+			<hr />
+			<center>
+				<font size="5"><a href="index.htm">Home</a> | <a
+					href="about.htm">About</a> | <a href="contact.htm">Contact</a></font>
+			</center>
+			<hr />
 
-	<%-- Below is List for administrative users --%>
 
-	<h1>All Administrative User Details</h1>
-	<ul>
-		<c:forEach var="user" items="${users}">
-			<li><a href="user?id=${user.id}">${user.name}</a>
-		</c:forEach>
-	</ul>
-	<a href="user?add">Add a new Administrative User</a>
+			<%-- Below is List for administrative users --%>
+
+			<h1>All Administrative User Details</h1>
+			<ul>
+				<c:forEach var="user" items="${users}">
+					<li><a href="user?id=${user.id}">${user.name}</a>
+				</c:forEach>
+			</ul>
+			<a href="user?add">Add a new User</a>
 
 
-	<%--Below is List for Subjects --%>
+			<%--Below is List for Subjects --%>
 
-	
-	<h1>All Subject Details</h1>
-	<ul>
-		<c:forEach var="subject" items="${subjects}">
-			<li><a href="subject?id=${subject.id}">${subject.paperName}</a>
-		</c:forEach>
-	</ul>
-	<a href="subject?add">Add a new Subject</a>
-	
-	<%--Below is List for Students --%>
-	
-		<h1>All Student Details</h1>
-	<ul>
-		<c:forEach var="student" items="${students}">
-			<li><a href="student?id=${student.id}">${student.name}</a>
-		</c:forEach>
-	</ul>
-	<a href="student?add">Add a new Student</a>
-	
+
+			<h1>All Subject Details</h1>
+			<ul>
+				<c:forEach var="subject" items="${subjects}">
+					<li><a href="subject?id=${subject.id}">${subject.paperName}</a>
+				</c:forEach>
+			</ul>
+			<a href="subject?add">Add a new Subject</a>
+
+			<%--Below is List for Students --%>
+
+			<h1>All Student Details</h1>
+			<ul>
+				<c:forEach var="student" items="${students}">
+					<li><a href="student?id=${student.id}">${student.studentName}</a>
+				</c:forEach>
+			</ul>
+			<a href="student?add">Add a new Student</a>
+		</div>
+	</div>
 
 </body>
 </html>

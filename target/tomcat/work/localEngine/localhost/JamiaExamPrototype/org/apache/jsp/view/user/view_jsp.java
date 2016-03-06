@@ -63,7 +63,7 @@ public final class view_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${user.name}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
       out.write("</h1>\r\n");
       out.write("\t<h1>");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${user.role}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${user.role.name}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
       out.write("</h1>\r\n");
       out.write("\t<a href=\"adminHome\">Back to Home</a>|\r\n");
       out.write("\t<a href=\"user?id=");

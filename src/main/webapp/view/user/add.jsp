@@ -14,7 +14,13 @@
 		<input type="hidden" name="add">
 		<ul>
 			<li>Name:<input type="text" name="name"></li>
-			<li>Role:<input type="text" name="role"></li>
+			<li>Role:<select name="role">
+			<option value="0">(none)</option>
+					<c:forEach var="role" items="${roles}">
+						<option value="${role.value}">${role.name}</option>
+					</c:forEach>			
+				</select>	
+			</li>
 		</ul>
 		<input type="submit" value="Submit" name="add">
 	</form>

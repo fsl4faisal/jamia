@@ -6,7 +6,7 @@
 </head>
 <body>
 	<h1>${user.name}</h1>
-	<h1>${user.role}</h1>
+	<h1>${user.role.name}</h1>
 	<a href="adminHome">Back to Home</a>|
 	<a href="user?id=${user.id}&edit">Edit User</a>
 </body>

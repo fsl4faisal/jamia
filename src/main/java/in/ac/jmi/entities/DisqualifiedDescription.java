@@ -2,72 +2,83 @@ package in.ac.jmi.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="DISQUALIFIED_DESCRIPTION")
 public class DisqualifiedDescription extends BaseEntity{
 	
-	@Column(name="UNIVERSITY_BOARD_NAME")
-	private String universityBoardName;
+	@Column(name="PREVIOUS_UNIVERSITY_BOARD_NAME")
+	private String previousUniversityBoardName;
 	
-	@Column(name="EXAMINATION")
-	private String examination;
+	@Column(name="PREVIOUS_EXAMINATION_NAME")
+	private String previousExaminationName;
 	
-	@Column(name="YEAR")
-	private String year;
+	@Column(name="PREVIOUS_YEAR")
+	private short previousYear;
 	
-	@Column(name="ENROLLMENT_NUMBER")
-	private String enrollmentNumber;
+	@Column(name="PREVIOUS_ENROLLMENT_NUMBER")
+	private String previousEnrollmentNumber;
 	
-	@Column(name="ROLL_NUMBER")
-	private String rollNumber;
+	@Column(name="PREVIOUS_ROLL_NUMBER")
+	private String previousRollNumber;
 	
 	@Column(name="PERIOD_OF_PUNISHMENT")
 	private String periodOfPunishment;
-	
-	@Column(name="HELD_YEAR")
-	private String heldYear;
-	
-	@Column(name="SUBJECT")
-	private String subject;
+		
+	public DisqualifiedDescription(){}
 
-	public String getUniversityBoardName() {
-		return universityBoardName;
+	public DisqualifiedDescription(String previousUniversityBoardName,
+			String previousExaminationName, short previousYear,
+			String previousEnrollmentNumber, String previousRollNumber,
+			String periodOfPunishment) {
+		super();
+		this.previousUniversityBoardName = previousUniversityBoardName;
+		this.previousExaminationName = previousExaminationName;
+		this.previousYear = previousYear;
+		this.previousEnrollmentNumber = previousEnrollmentNumber;
+		this.previousRollNumber = previousRollNumber;
+		this.periodOfPunishment = periodOfPunishment;
 	}
 
-	public void setUniversityBoardName(String universityBoardName) {
-		this.universityBoardName = universityBoardName;
+	public String getPreviousUniversityBoardName() {
+		return previousUniversityBoardName;
 	}
 
-	public String getExamination() {
-		return examination;
+	public void setPreviousUniversityBoardName(String previousUniversityBoardName) {
+		this.previousUniversityBoardName = previousUniversityBoardName;
 	}
 
-	public void setExamination(String examination) {
-		this.examination = examination;
+	public String getPreviousExaminationName() {
+		return previousExaminationName;
 	}
 
-	public String getYear() {
-		return year;
+	public void setPreviousExaminationName(String previousExaminationName) {
+		this.previousExaminationName = previousExaminationName;
 	}
 
-	public void setYear(String year) {
-		this.year = year;
+	public short getPreviousYear() {
+		return previousYear;
 	}
 
-	public String getEnrollmentNumber() {
-		return enrollmentNumber;
+	public void setPreviousYear(short previousYear) {
+		this.previousYear = previousYear;
 	}
 
-	public void setEnrollmentNumber(String enrollmentNumber) {
-		this.enrollmentNumber = enrollmentNumber;
+	public String getPreviousEnrollmentNumber() {
+		return previousEnrollmentNumber;
 	}
 
-	public String getRollNumber() {
-		return rollNumber;
+	public void setPreviousEnrollmentNumber(String previousEnrollmentNumber) {
+		this.previousEnrollmentNumber = previousEnrollmentNumber;
 	}
 
-	public void setRollNumber(String rollNumber) {
-		this.rollNumber = rollNumber;
+	public String getPreviousRollNumber() {
+		return previousRollNumber;
+	}
+
+	public void setPreviousRollNumber(String previousRollNumber) {
+		this.previousRollNumber = previousRollNumber;
 	}
 
 	public String getPeriodOfPunishment() {
@@ -77,24 +88,7 @@ public class DisqualifiedDescription extends BaseEntity{
 	public void setPeriodOfPunishment(String periodOfPunishment) {
 		this.periodOfPunishment = periodOfPunishment;
 	}
-
-	public String getHeldYear() {
-		return heldYear;
-	}
-
-	public void setHeldYear(String heldYear) {
-		this.heldYear = heldYear;
-	}
-
-	public String getSubject() {
-		return subject;
-	}
-
-	public void setSubject(String subject) {
-		this.subject = subject;
-	}
 	
-	
-
+		
 }
 	

@@ -8,16 +8,16 @@ import javax.persistence.Table;
 @Table(name="ADDRESS")
 public class Address extends BaseEntity{
 	
-	@Column(name="STREET")
+	@Column(name="STREET",nullable=false)
 	private String street;
 	
-	@Column(name="CITY")
+	@Column(name="CITY",nullable=false)
 	private String city;
 	
-	@Column(name="STATE")
+	@Column(name="STATE",nullable=false)
 	private String state;
 	
-	@Column(name="PINCODE")
+	@Column(name="PINCODE",nullable=false)
 	private int pincode;
 
 	public Address(){}
