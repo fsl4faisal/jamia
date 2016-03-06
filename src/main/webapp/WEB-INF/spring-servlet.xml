@@ -13,6 +13,9 @@
 	<mvc:annotation-driven />
 	<context:component-scan base-package="in.ac.jmi.controllers" />
 
+<!-- Adding this to include css in the pages -->
+	<mvc:resources mapping="/resources/**" location="/resources/css/" />
+
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/view/" />

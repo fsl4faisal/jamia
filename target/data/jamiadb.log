@@ -15,17 +15,3 @@ alter table STUDENT add constraint FKBACA0E1BEDE7F0F1 foreign key (STUDENT_PERMA
 alter table STUDENT add constraint FKBACA0E1B244B527B foreign key (STUDENT_DISQUALIFIED_DESCRIPTION) references DISQUALIFIED_DESCRIPTION
 alter table STUDENT_SUBJECT add constraint FKFA194AE81A68A289 foreign key (subjectTaken_ID) references SUBJECT
 alter table STUDENT_SUBJECT add constraint FKFA194AE8874CDC78 foreign key (STUDENT_ID) references STUDENT
-/*C5*/SET SCHEMA PUBLIC
-INSERT INTO USER VALUES(1,0,'faisal',0)
-COMMIT
-/*C8*/SET SCHEMA PUBLIC
-DELETE FROM USER WHERE ID=1
-INSERT INTO USER VALUES(1,1,'faisal raza',0)
-COMMIT
-/*C5*/INSERT INTO SUBJECT VALUES(1,0,1,'computer engg','101',1)
-COMMIT
-/*C8*/INSERT INTO ADDRESS VALUES(1,0,'trivandrum',695011,'abul fazal enclave','room number 103,')
-INSERT INTO ADDRESS VALUES(2,0,'trivandrum',695011,'Kerala','room number 103,')
-INSERT INTO PLACE_OF_BIRTH VALUES(1,0,'jh','jh','vjh')
-INSERT INTO STUDENT VALUES(1,0,1,'1991-02-08',1,'fsl4faisal@gmail.com','08-1430',0,'Faiz Ahmed',0,0,'+918893789409','Afrin Afroz','India',0,'Islam',1,'azra','Md Faisal',2016,1,NULL,2,1)
-COMMIT
