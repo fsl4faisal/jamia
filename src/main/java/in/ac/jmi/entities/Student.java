@@ -4,6 +4,7 @@ import in.ac.jmi.constants.ExaminationName;
 import in.ac.jmi.constants.Flag;
 import in.ac.jmi.constants.Gender;
 import in.ac.jmi.constants.MediumOfExamination;
+import in.ac.jmi.constants.Role;
 import in.ac.jmi.constants.Semester;
 
 import java.util.Date;
@@ -25,6 +26,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name = "STUDENT")
 public class Student extends BaseEntity {
 
+	@OneToOne(cascade = CascadeType.ALL, optional = false)
+	@JoinColumn(name = "STUDENT_USER")
+	private User student;
+	
 	@Column(name = "EXAMINATION_NAME", nullable = false)
 	private ExaminationName examinationName;
 
@@ -34,16 +39,10 @@ public class Student extends BaseEntity {
 	@Column(name = "YEAR", nullable = false)
 	private short year;
 
-	@Column(name = "STUDENT_NAME", nullable = false)
-	private String studentName;
-
 	@Column(name = "DATE_OF_BIRTH", nullable = false)
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date dateOfBirth;//TODO
-
-	@Column(name = "EMAIL_ADDRESS", nullable = false)
-	private String emailAddress;
+	private Date dateOfBirth;
 	
 	@OneToOne(cascade = CascadeType.ALL, optional = false)
 	@JoinColumn(name = "STUDENT_PLACE_OF_BIRTH")
@@ -102,14 +101,13 @@ public class Student extends BaseEntity {
 
 	public Student() {
 	}
-				 
+
 	public Student(
-			ExaminationName examinationName, 
-			Semester semesterName,
+			User student, 
+			ExaminationName examinationName,
+			Semester semesterName, 
 			short year, 
-			String studentName, 
 			Date dateOfBirth,
-			String emailAddress,
 			PlaceOfBirth placeOfBirth, 
 			String nationality, 
 			String religion,
@@ -117,22 +115,22 @@ public class Student extends BaseEntity {
 			String fatherName, 
 			String motherName,
 			String spouseName, 
-			Address correspondenceAddress, 
-			Address permanentAddress,
-			String mobileNumber, 
-			MediumOfExamination mediumOfExamination,
-			String enrollmentNumber, 
+			Address correspondenceAddress,
+			Address permanentAddress, 
+			String mobileNumber,
+			MediumOfExamination mediumOfExamination, 
+			String enrollmentNumber,
 			Flag quotaFlag, 
 			Flag disqualifiedFlag,
 			DisqualifiedDescription disqualifiedDescription,
-			Set<Subject> subjectTaken, Flag approveByHodFlag) {
+			Set<Subject> subjectTaken, 
+			Flag approveByHodFlag) {
 		super();
+		this.student = student;
 		this.examinationName = examinationName;
 		this.semesterName = semesterName;
 		this.year = year;
-		this.studentName = studentName;
 		this.dateOfBirth = dateOfBirth;
-		this.emailAddress=emailAddress;
 		this.placeOfBirth = placeOfBirth;
 		this.nationality = nationality;
 		this.religion = religion;
@@ -151,15 +149,13 @@ public class Student extends BaseEntity {
 		this.subjectTaken = subjectTaken;
 		this.approveByHodFlag = approveByHodFlag;
 	}
-	
-	
 
-	public String getEmailAddress() {
-		return emailAddress;
+	public User getStudent() {
+		return student;
 	}
 
-	public void setEmailAddress(String emailAddress) {
-		this.emailAddress = emailAddress;
+	public void setStudent(User student) {
+		this.student = student;
 	}
 
 	public ExaminationName getExaminationName() {
@@ -184,14 +180,6 @@ public class Student extends BaseEntity {
 
 	public void setYear(short year) {
 		this.year = year;
-	}
-
-	public String getStudentName() {
-		return studentName;
-	}
-
-	public void setStudentName(String studentName) {
-		this.studentName = studentName;
 	}
 
 	public Date getDateOfBirth() {
@@ -338,5 +326,6 @@ public class Student extends BaseEntity {
 	public void setApproveByHodFlag(Flag approveByHodFlag) {
 		this.approveByHodFlag = approveByHodFlag;
 	}
+				 
 
 }

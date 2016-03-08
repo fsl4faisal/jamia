@@ -25,8 +25,8 @@
 						</c:choose>
 					</c:forEach>			
 				</select>
-			
-			</li>
+				</li>
+			<li>Email Address:<input type="text" name="email_address" value="${user.emailAddress}"></li>
 		</ul>
 		<input type="submit" value="edit" name="edit">
 	</form>

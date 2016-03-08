@@ -21,6 +21,7 @@
 					</c:forEach>			
 				</select>	
 			</li>
+			<li>Email Address:<input type="text" name="email_address"></li>
 		</ul>
 		<input type="submit" value="Submit" name="add">
 	</form>

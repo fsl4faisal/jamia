@@ -16,10 +16,9 @@ import in.ac.jmi.repositories.StudentRepository;
 import in.ac.jmi.repositories.SubjectRepository;
 import in.ac.jmi.repositories.UserRepository;
 
+import java.util.ArrayList;
 import java.util.Date;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -41,9 +40,6 @@ public class AdminController {
 	@Autowired
 	private StudentRepository studentRepository;
 
-	@Autowired
-	private static final Logger logger = 
-			LoggerFactory.getLogger(AdminController.class);
 	/*
 	 * Displaying Admin Home page with all the information from users and
 	 * Subjects
@@ -59,40 +55,61 @@ public class AdminController {
 
 	@RequestMapping(value = "/user", params = "add", method = RequestMethod.GET)
 	public String getAddUser(Model model) {
-		model.addAttribute("roles", Role.values());
+		ArrayList<Role> roles=new ArrayList<Role>();
+		
+		//From user Add only admin and head of department can be added
+		roles.add(Role.ADMIN);
+		roles.add(Role.HEAD_OF_DEPARTMENT);
+		model.addAttribute("roles", roles);
 		return "user/add";
 	}
 
 	@RequestMapping(value = "/user", params = "add", method = RequestMethod.POST)
-	public String postAddUser(@RequestParam("name") String name,
-			@RequestParam("role") Role role) {
+	public String postAddUser(
+			@RequestParam("name") String name,
+			@RequestParam("role") Role role,
+			@RequestParam("email_address") String emailAddress
+			) {
 		System.out.println("Inside postAddUser");
-		User user = new User(name, role);
+		User user = new User(name, role,emailAddress);
 		user = userRepository.save(user);
 		return "redirect:user?id=" + user.getId();
 	}
 
 	@RequestMapping(value = "/user", method = RequestMethod.GET)
-	public String postAddUser(@RequestParam("id") long id, Model model) {
+	public String postAddUser(
+			@RequestParam("id") long id, 
+			Model model) {
 		model.addAttribute("user", userRepository.findOne(id));
 		return "user/view";
 	}
 
 	@RequestMapping(value = "/user", params = "edit", method = RequestMethod.GET)
-	public String getEditUser(@RequestParam("id") long id, Model model) {
+	public String getEditUser(
+			@RequestParam("id") long id, 
+			Model model) {
 		model.addAttribute("user", userRepository.findOne(id));
-		model.addAttribute("roles", Role.values());
+		
+		ArrayList<Role> roles=new ArrayList<Role>();
+		roles.add(Role.ADMIN);
+		roles.add(Role.HEAD_OF_DEPARTMENT);
+		model.addAttribute("roles", roles);
 		return "user/edit";
 	}
 
 	@RequestMapping(value = "/user", params = "edit", method = RequestMethod.POST)
 	@Transactional
-	public String postEditUser(@RequestParam long id,
-			@RequestParam String name, @RequestParam("role") Role role) {
+	public String postEditUser(
+			@RequestParam long id,
+			@RequestParam String name, 
+			@RequestParam("role") Role role,
+			@RequestParam("email_address") String emailAddress
+			) {
 
 		User user = userRepository.findOne(id);
 		user.setName(name);
 		user.setRole(role);
+		user.setEmailAddress(emailAddress);
 
 		user = userRepository.save(user);
 		// redirect to view page
@@ -119,7 +136,8 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/subject", params = "add", method = RequestMethod.POST)
-	public String postAddSubject(@RequestParam("paper_name") String paperName,
+	public String postAddSubject(
+			@RequestParam("paper_name") String paperName,
 			@RequestParam("paper_number") String paperNumber,
 			@RequestParam("paper_category") PaperCategory paperCategory,
 			@RequestParam("paper_semester") Semester paperSemester) {
@@ -140,7 +158,9 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/subject", params = "edit", method = RequestMethod.GET)
-	public String getEditSubject(@RequestParam("id") long id, Model model) {
+	public String getEditSubject(
+			@RequestParam("id") long id, 
+			Model model) {
 		model.addAttribute("subject", subjectRepository.findOne(id));
 		model.addAttribute("categories", PaperCategory.values());
 		model.addAttribute("semesters", Semester.values());
@@ -159,7 +179,8 @@ public class AdminController {
 
 	@RequestMapping(value = "/subject", params = "edit", method = RequestMethod.POST)
 	@Transactional
-	public String postEditSubject(@RequestParam("id") long id,
+	public String postEditSubject(
+			@RequestParam("id") long id,
 			@RequestParam("paper_name") String paperName,
 			@RequestParam("paper_number") String paperNumber,
 			@RequestParam("paper_category") PaperCategory paperCategory,
@@ -200,10 +221,11 @@ public class AdminController {
 
 	@RequestMapping(value = "/student", params = "add", method = RequestMethod.POST)
 	public String postAddStudent(
+			@RequestParam("student_name") String name,
+
 			@RequestParam("examination_name") ExaminationName examinationName,
 			@RequestParam("semester_name") Semester semesterName,
 			@RequestParam("year") short year,
-			@RequestParam("student_name") String studentName,
 			@RequestParam("date_of_birth") @DateTimeFormat(pattern="yyyy-MM-dd") Date dateOfBirth,//TODO
 			@RequestParam("email_address") String emailAddress,
 			@RequestParam("nationality") String nationality,
@@ -236,23 +258,23 @@ public class AdminController {
 
 	) {
 		System.out.println("Inside postAddStudent");
-		logger.debug("Inside postAddStudent from logger");
-		PlaceOfBirth placeOfBirth = new PlaceOfBirth(dobTown, dobDistt,
-				dobState);
 
 		Address correspondenceAddress = new Address(correspondenceStreet,
 				correspondenceCity, correspondenceState, correspondencePincode);
 
 		Address permanentAddress = new Address(permanentStreet, permanentCity,
 				permanentState, permanentPincode);
+		
+		PlaceOfBirth placeOfBirth = new PlaceOfBirth(dobTown, dobDistt,dobState);
+		
+		User user=new User(name,Role.STUDENT,emailAddress);
 
 		Student student = new Student(
+				user,
 				examinationName, 
 				semesterName, 
 				year,
-				studentName, 
 				dateOfBirth, 
-				emailAddress,
 				placeOfBirth, 
 				nationality, 
 				religion,
