@@ -110,7 +110,7 @@ public final class add_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t\t\t\t\t\t</div>\r\n");
       out.write("\r\n");
       out.write("\t\t\t\t\t\t<button type=\"submit\" value=\"Submit\" name=\"add\"\r\n");
-      out.write("\t\t\t\t\t\t\tclass=\"btn btn-primary active\">Submit</button>\r\n");
+      out.write("\t\t\t\t\t\t\tclass=\"btn btn-info active\">Submit</button>\r\n");
       out.write("\t\t\t\t\t\t<a href=\"adminHome\" class=\"btn btn-info\" role=\"button\">Back</a>\r\n");
       out.write("\r\n");
       out.write("\t\t\t\t\t</form>\r\n");

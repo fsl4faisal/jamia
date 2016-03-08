@@ -54,7 +54,7 @@
 						</div>
 
 						<button type="submit" value="Submit" name="add"
-							class="btn btn-primary active">Submit</button>
+							class="btn btn-info active">Submit</button>
 						<a href="adminHome" class="btn btn-info" role="button">Back</a>
 
 					</form>

@@ -1,10 +1,10 @@
-package org.apache.jsp.view.user;
+package org.apache.jsp.view;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 
-public final class view_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -50,15 +50,11 @@ public final class view_jsp extends org.apache.jasper.runtime.HttpJspBase
       out = pageContext.getOut();
       _jspx_out = out;
 
+      out.write("\r\n");
+      out.write("\r\n");
       out.write("<!DOCTYPE html>\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
       out.write("<html>\r\n");
       out.write("<head>\r\n");
-      out.write("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\">\r\n");
-      out.write("\r\n");
       out.write("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n");
       out.write("\r\n");
       out.write("<link rel=\"stylesheet\"\r\n");
@@ -68,57 +64,41 @@ public final class view_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("<script\r\n");
       out.write("\tsrc=\"http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js\"></script>\r\n");
       out.write("\r\n");
-      out.write("<title>");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${user.name}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
-      out.write("</title>\r\n");
-      out.write("</head>\r\n");
       out.write("\r\n");
+      out.write("<title>Login</title>\r\n");
+      out.write("</head>\r\n");
       out.write("<body>\r\n");
       out.write("\r\n");
       out.write("\t<div class=\"container\">\r\n");
       out.write("\t\t<div class=\"row\">\r\n");
-      out.write("\t\t\t<div class=\"col-md-12\">\r\n");
-      out.write("\t\t\t\t<div class=\"col-md-4\">\r\n");
-      out.write("\t\t\t\t\t<h2>User Info</h2>\r\n");
-      out.write("\t\t\t\t\t<p>Below are the details from the database</p>\r\n");
-      out.write("\t\t\t\t\t<table class=\"table table-reflow\">\r\n");
-      out.write("\t\t\t\t\t\t<tbody>\r\n");
-      out.write("\t\t\t\t\t\t\t<tr>\r\n");
-      out.write("\t\t\t\t\t\t\t\t<th scope=\"row\">Name</th>\r\n");
-      out.write("\t\t\t\t\t\t\t\t<td>");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${user.name}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
-      out.write("</td>\r\n");
-      out.write("\t\t\t\t\t\t\t</tr>\r\n");
-      out.write("\t\t\t\t\t\t\t<tr>\r\n");
-      out.write("\t\t\t\t\t\t\t\t<th scope=\"row\">Role</th>\r\n");
-      out.write("\t\t\t\t\t\t\t\t<td>");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${user.role.name}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
-      out.write("</td>\r\n");
-      out.write("\t\t\t\t\t\t\t</tr>\r\n");
-      out.write("\t\t\t\t\t\t\t<tr>\r\n");
-      out.write("\t\t\t\t\t\t\t\t<th scope=\"row\">Email Address</th>\r\n");
-      out.write("\t\t\t\t\t\t\t\t<td>");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${user.emailAddress}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
-      out.write("</td>\r\n");
-      out.write("\t\t\t\t\t\t\t</tr>\r\n");
-      out.write("\t\t\t\t\t\t</tbody>\r\n");
-      out.write("\t\t\t\t\t</table>\r\n");
-      out.write("\r\n");
-      out.write("\t\t\t\t\t<a href=\"adminHome\" class=\"btn btn-info\" role=\"button\">Back</a> \r\n");
-      out.write("\t\t\t\t\t<a href=\"user?id=");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${user.id}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
-      out.write("&edit\" class=\"btn btn-info\" role=\"button\">Edit User</a>\r\n");
-      out.write("\t\t\t\t\r\n");
-      out.write("\r\n");
+      out.write("\t\t<div class=\"col-md-12\">\r\n");
+      out.write("\t\t<div class=\"col-md-4\">\r\n");
+      out.write("\t\t</div>\r\n");
+      out.write("\t\t\t<div class=\"col-md-4\">\r\n");
+      out.write("\t\t\t<h2>Login</h2>\r\n");
+      out.write("\t\t\t<form action=\"login\" method=\"post\" role=\"form\">\r\n");
+      out.write("\t\t\t\t<div class=\"form-group \">\r\n");
+      out.write("\t\t\t\t\t<label for=\"user\">User Name:</label> \r\n");
+      out.write("\t\t\t\t\t<input type=\"text\" class=\"form-control\" name=\"user_name\" id=\"user_name\" placeholder=\"Enter user id\">\r\n");
       out.write("\t\t\t\t</div>\r\n");
-      out.write("\t\t\t\t<div class=\"col-md-4\"></div>\r\n");
-      out.write("\r\n");
-      out.write("\t\t\t\t<div class=\"col-md-4\"></div>\r\n");
+      out.write("\t\t\t\t<div class=\"form-group\">\r\n");
+      out.write("\t\t\t\t\t<label for=\"pwd\">Password:</label> \r\n");
+      out.write("\t\t\t\t\t<input type=\"password\"\tname=\"password\" class=\"form-control\" id=\"password\" placeholder=\"Enter password\">\r\n");
+      out.write("\t\t\t\t</div>\r\n");
+      out.write("\t\t\t\t<div class=\"checkbox\">\r\n");
+      out.write("\t\t\t\t\t<label><input type=\"checkbox\"> Remember me</label>\r\n");
+      out.write("\t\t\t\t</div>\r\n");
+      out.write("\t\t\t\t<button type=\"submit\" class=\"btn btn-default\">Submit</button>\r\n");
+      out.write("\t\t\t</form>\r\n");
+      out.write("\t\t\t<div class=\"col-md-4\">\r\n");
+      out.write("\t\t</div>\r\n");
+      out.write("\t\t\t</div>\r\n");
       out.write("\t\t\t</div>\r\n");
       out.write("\t\t</div>\r\n");
       out.write("\t</div>\r\n");
+      out.write("\r\n");
       out.write("</body>\r\n");
-      out.write("</html>");
+      out.write("</html>\r\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;

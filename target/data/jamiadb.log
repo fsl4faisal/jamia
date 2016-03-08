@@ -17,21 +17,12 @@ alter table STUDENT add constraint FKBACA0E1B244B527B foreign key (STUDENT_DISQU
 alter table STUDENT_SUBJECT add constraint FKFA194AE81A68A289 foreign key (subjectTaken_ID) references SUBJECT
 alter table STUDENT_SUBJECT add constraint FKFA194AE8874CDC78 foreign key (STUDENT_ID) references STUDENT
 /*C5*/SET SCHEMA PUBLIC
-INSERT INTO USER VALUES(1,0,'fsl4faisal@gmail.com','faisal raza',1)
+INSERT INTO USER VALUES(1,0,'fsl4faisal@gmail.com','faisal',0)
 COMMIT
-/*C8*/SET SCHEMA PUBLIC
-DELETE FROM USER WHERE ID=1
-INSERT INTO USER VALUES(1,1,'fsl4faisals@gmail.com','faisal raza',1)
+/*C4*/DELETE FROM USER WHERE ID=1
 COMMIT
-/*C7*/SET SCHEMA PUBLIC
-DELETE FROM USER WHERE ID=1
+/*C6*/SET SCHEMA PUBLIC
+INSERT INTO USER VALUES(2,0,'fsl4faisal@gmail.com','faisal raza',1)
 COMMIT
-/*C3*/SET SCHEMA PUBLIC
-INSERT INTO USER VALUES(2,0,'fsl4faisal@gmail.com','faisal',1)
-COMMIT
-INSERT INTO USER VALUES(3,0,'fsl4faisal@gmail.com','Faisal',0)
-COMMIT
-/*C4*/INSERT INTO USER VALUES(4,0,'fsl4faisal@agmail.com','Md Faisal',1)
-COMMIT
-/*C3*/INSERT INTO USER VALUES(5,0,'arham@gmail.com','Arham',0)
+/*C5*/DELETE FROM USER WHERE ID=2
 COMMIT
