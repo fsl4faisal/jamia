@@ -26,3 +26,12 @@ COMMIT
 /*C7*/SET SCHEMA PUBLIC
 DELETE FROM USER WHERE ID=1
 COMMIT
+/*C3*/SET SCHEMA PUBLIC
+INSERT INTO USER VALUES(2,0,'fsl4faisal@gmail.com','faisal',1)
+COMMIT
+INSERT INTO USER VALUES(3,0,'fsl4faisal@gmail.com','Faisal',0)
+COMMIT
+/*C4*/INSERT INTO USER VALUES(4,0,'fsl4faisal@agmail.com','Md Faisal',1)
+COMMIT
+/*C3*/INSERT INTO USER VALUES(5,0,'arham@gmail.com','Arham',0)
+COMMIT
