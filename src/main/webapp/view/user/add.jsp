@@ -31,22 +31,24 @@
 
 
 						<div class="form-group ">
-							<label for="user">User Name:</label> <input type="text"
+							<label for="user">User Name:</label> 
+							<input type="text"
 								class="form-control" name="name" id="name"
-								placeholder="Enter User Name">
+								placeholder="Enter User Name" required>
 						</div>
 
 
 						<div class="form-group">
 							<label for="email">Email Address:</label> <input type="email"
 								name="email_address" class="form-control" id="email"
-								placeholder="Enter email Address">
+								placeholder="Enter email Address" required>
 						</div>
 
 						<div class="form-group">
-							<label for="role">Role:</label> <select name="role"
-								class="form-control" id="role" placeholder="Enter Role">
-								<option value="0">(none)</option>
+							<label for="role">Role:</label> 
+							<select name="role"
+								class="form-control" id="role" placeholder="Enter Role" required>
+								<option disabled selected></option>
 								<c:forEach var="role" items="${roles}">
 									<option value="${role.value}">${role.name}</option>
 								</c:forEach>
