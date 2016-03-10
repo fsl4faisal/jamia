@@ -39,7 +39,7 @@
 
 						<div class="form-group">
 							<label for="email">Email Address:</label> <input type="email"
-								name="email_address" class="form-control" id="email"
+								name="emailAddress" class="form-control" id="email"
 								placeholder="Enter email Address" value="${user.emailAddress}" required>
 						</div>
 

@@ -11,6 +11,7 @@
 		<li>Number: ${subject.paperNumber}</li>
 		<li>Category: ${subject.paperCategory.name}</li>
 		<li>Semester: ${subject.paperSemester.name}</li>
+		<li>Department: ${subject.departmentName.name}</li>
 	</ul>
 	
 	<a href="adminHome">Back to Home</a>|

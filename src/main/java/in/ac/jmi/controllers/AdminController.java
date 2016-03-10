@@ -1,5 +1,6 @@
 package in.ac.jmi.controllers;
 
+import in.ac.jmi.constants.DepartmentName;
 import in.ac.jmi.constants.ExaminationName;
 import in.ac.jmi.constants.Flag;
 import in.ac.jmi.constants.Gender;
@@ -24,6 +25,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -64,7 +66,7 @@ public class AdminController {
 		return "user/add";
 	}
 
-	@RequestMapping(value = "/user", params = "add", method = RequestMethod.POST)
+/*	@RequestMapping(value = "/user", params = "add", method = RequestMethod.POST)
 	public String postAddUser(
 			@RequestParam("name") String name,
 			@RequestParam("role") Role role,
@@ -75,6 +77,16 @@ public class AdminController {
 		user = userRepository.save(user);
 		return "redirect:user?id=" + user.getId();
 	}
+*/	
+	
+	@RequestMapping(value = "/user", params = "add", method = RequestMethod.POST)
+	public String postAddUser(@ModelAttribute User user) {
+		System.out.println("Inside postAddUser");
+		user = userRepository.save(user);
+		return "redirect:user?id=" + user.getId();
+	}
+	
+	
 
 	@RequestMapping(value = "/user", method = RequestMethod.GET)
 	public String postAddUser(
@@ -99,19 +111,15 @@ public class AdminController {
 
 	@RequestMapping(value = "/user", params = "edit", method = RequestMethod.POST)
 	@Transactional
-	public String postEditUser(
-			@RequestParam long id,
-			@RequestParam String name, 
-			@RequestParam("role") Role role,
-			@RequestParam("email_address") String emailAddress
-			) {
+	public String postEditUser(@ModelAttribute User user) {
 
-		User user = userRepository.findOne(id);
-		user.setName(name);
-		user.setRole(role);
-		user.setEmailAddress(emailAddress);
+		User newUser = userRepository.findOne(user.getId());
+		
+		newUser.setEmailAddress(user.getEmailAddress());
+		newUser.setName(user.getName());
+		newUser.setRole(user.getRole());
 
-		user = userRepository.save(user);
+		newUser = userRepository.save(newUser);
 		// redirect to view page
 		return "redirect:user?id=" + user.getId();
 	}
@@ -132,6 +140,8 @@ public class AdminController {
 
 		model.addAttribute("categories", PaperCategory.values());
 		model.addAttribute("semesters", Semester.values());
+		model.addAttribute("departments", DepartmentName.values());
+
 		return "subject/add";
 	}
 
@@ -140,11 +150,13 @@ public class AdminController {
 			@RequestParam("paper_name") String paperName,
 			@RequestParam("paper_number") String paperNumber,
 			@RequestParam("paper_category") PaperCategory paperCategory,
-			@RequestParam("paper_semester") Semester paperSemester) {
+			@RequestParam("paper_semester") Semester paperSemester,
+			@RequestParam("department_name") DepartmentName departmentName 
+			) {
 		System.out.println("Inside postAddSubject");
 
 		Subject subject = new Subject(paperNumber, paperName, paperCategory,
-				paperSemester);
+				paperSemester,departmentName);
 
 		subject = subjectRepository.save(subject);
 		return "redirect:subject?id=" + subject.getId();
@@ -164,16 +176,7 @@ public class AdminController {
 		model.addAttribute("subject", subjectRepository.findOne(id));
 		model.addAttribute("categories", PaperCategory.values());
 		model.addAttribute("semesters", Semester.values());
-		Subject subject = subjectRepository.findOne(id);
-		System.out.println(subject.getPaperCategory().name());
-		System.out.println(subject.getPaperSemester().name());
-
-		System.out.println(subject.getPaperCategory().getValue());
-		System.out.println(subject.getPaperSemester().getValue());
-
-		System.out.println(subject.getPaperCategory().getName());
-		System.out.println(subject.getPaperSemester().getName());
-
+		model.addAttribute("departments", DepartmentName.values());
 		return "subject/edit";
 	}
 
@@ -184,13 +187,15 @@ public class AdminController {
 			@RequestParam("paper_name") String paperName,
 			@RequestParam("paper_number") String paperNumber,
 			@RequestParam("paper_category") PaperCategory paperCategory,
-			@RequestParam("paper_semester") Semester paperSemester) {
+			@RequestParam("paper_semester") Semester paperSemester,
+			@RequestParam("department_name") DepartmentName departmentName) {
 
 		Subject subject = subjectRepository.findOne(id);
 		subject.setPaperCategory(paperCategory);
 		subject.setPaperName(paperName);
 		subject.setPaperNumber(paperNumber);
 		subject.setPaperSemester(paperSemester);
+		subject.setDepartmentName(departmentName);
 
 		subject = subjectRepository.save(subject);
 		// redirect to view page
@@ -221,12 +226,18 @@ public class AdminController {
 
 	@RequestMapping(value = "/student", params = "add", method = RequestMethod.POST)
 	public String postAddStudent(
-			@RequestParam("student_name") String name,
 
 			@RequestParam("examination_name") ExaminationName examinationName,
-			@RequestParam("semester_name") Semester semesterName,
 			@RequestParam("year") short year,
+			@RequestParam("semester_name") Semester semesterName,
+			@RequestParam("name") String name,
+
 			@RequestParam("date_of_birth") @DateTimeFormat(pattern="yyyy-MM-dd") Date dateOfBirth,//TODO
+
+			@RequestParam("DOB_town") String dobTown,
+			@RequestParam("DOB_distt") String dobDistt,
+			@RequestParam("DOB_state") String dobState,
+
 			@RequestParam("email_address") String emailAddress,
 			@RequestParam("nationality") String nationality,
 			@RequestParam("religion") String religion,
@@ -237,24 +248,29 @@ public class AdminController {
 			@RequestParam("spouse_name") String spouseName,
 			
 			@RequestParam("mobile_number") String mobileNumber,
-			@RequestParam("medium_of_examination") MediumOfExamination mediumOfExamination,
-			@RequestParam("enrollment_number") String enrollmentNumber,
-			@RequestParam("belong_to_SC_ST_OBC") Flag quotaFlag,
-			@RequestParam("rusticted_expelled_disqualified_debarred_flag") Flag disqualifiedFlag,
 
-			@RequestParam("DOB_town") String dobTown,
-			@RequestParam("DOB_distt") String dobDistt,
-			@RequestParam("DOB_state") String dobState,
+			@RequestParam("correspondence_street") String correspondenceStreet,
+			@RequestParam("correspondence_city") String correspondenceCity,
+			@RequestParam("correspondence_state") String correspondenceState,
+			@RequestParam("correspondence_pincode") int correspondencePincode,
 
 			@RequestParam("permanent_street") String permanentStreet,
 			@RequestParam("permanent_city") String permanentCity,
 			@RequestParam("permanent_state") String permanentState,
 			@RequestParam("permanent_pincode") int permanentPincode,
 
-			@RequestParam("correspondence_street") String correspondenceStreet,
-			@RequestParam("correspondence_city") String correspondenceCity,
-			@RequestParam("correspondence_state") String correspondenceState,
-			@RequestParam("correspondence_pincode") int correspondencePincode
+			@RequestParam("medium_of_examination") MediumOfExamination mediumOfExamination,
+			@RequestParam("enrollment_number") String enrollmentNumber,
+			@RequestParam("belong_to_SC_ST_OBC") Flag quotaFlag,
+			
+			@RequestParam("rusticted_expelled_disqualified_debarred_flag") Flag disqualifiedFlag,
+
+			@RequestParam("previous_university_board") String previousUniversityBoardName,
+			@RequestParam("previous_examination") String previousExaminationName,
+			@RequestParam("previous_year") short previousYear,
+			@RequestParam("previous_enrollment_number") String previousEnrollmentNumber,
+			@RequestParam("previous_roll_number") String previousRollNumber,
+			@RequestParam("period_of_punishment") String periodOfPunishment
 
 	) {
 		System.out.println("Inside postAddStudent");

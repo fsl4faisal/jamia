@@ -1,5 +1,6 @@
 package in.ac.jmi.entities;
 
+import in.ac.jmi.constants.DepartmentName;
 import in.ac.jmi.constants.PaperCategory;
 import in.ac.jmi.constants.Semester;
 
@@ -22,17 +23,21 @@ public class Subject extends BaseEntity {
 
 	@Column(name = "PAPER_SEMESTER")
 	private Semester paperSemester;
+	
+	@Column(name = "DEPARTMENT_NAME")
+	private DepartmentName departmentName;
 
 	public Subject() {
 	}
 
 	public Subject(String paperNumber, String paperName,
-			PaperCategory paperCategory, Semester paperSemester) {
+			PaperCategory paperCategory, Semester paperSemester,DepartmentName departmentName) {
 		super();
 		this.paperNumber = paperNumber;
 		this.paperName = paperName;
 		this.paperCategory = paperCategory;
 		this.paperSemester = paperSemester;
+		this.departmentName=departmentName;
 	}
 
 	public String getPaperNumber() {
@@ -65,6 +70,14 @@ public class Subject extends BaseEntity {
 
 	public void setPaperSemester(Semester paperSemester) {
 		this.paperSemester = paperSemester;
+	}
+
+	public DepartmentName getDepartmentName() {
+		return departmentName;
+	}
+
+	public void setDepartmentName(DepartmentName departmentName) {
+		this.departmentName = departmentName;
 	}
 
 }

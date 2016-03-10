@@ -13,27 +13,33 @@
 	<form action="subject" method="post">
 		<input type="hidden" name="add">
 		<ul>
-			<li>Number:<input type="text" name="paper_number"></li>
-			<li>Name:<input type="text" name="paper_name"></li>
-			<li>Category:
-			<select name="paper_category">
-				<option value="0">(none)</option>
+			<li>Number:<input type="text" name="paperNumber"></li>
+			<li>Name:<input type="text" name="paperName"></li>
+			<li>Category: <select name="paperCategory">
+					<option value="0">(none)</option>
 					<c:forEach var="category" items="${categories}">
 						<option value="${category.value}">${category.name}</option>
-					</c:forEach>			
-				</select>
+					</c:forEach>
+			</select>
 			</li>
-			
-			
-			
-			
-			<li>Semester:
-			<select name="paper_semester">
-				<option value="0">(none)</option>
+
+
+
+
+			<li>Semester: <select name="paperSecurity">
+					<option value="0">(none)</option>
 					<c:forEach var="semester" items="${semesters}">
 						<option value="${semester.value}">${semester.name}</option>
-					</c:forEach>			
-				</select>
+					</c:forEach>
+			</select>
+			</li>
+
+			<li>Department: <select name="departmentName">
+					<option value="0">(none)</option>
+					<c:forEach var="department" items="${departments}">
+						<option value="${department.value}">${department.name}</option>
+					</c:forEach>
+			</select>
 			</li>
 		</ul>
 		<input type="submit" value="Submit" name="add">

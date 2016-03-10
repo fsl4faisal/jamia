@@ -2,10 +2,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>${student.studentName}</title>
+<title>${student.user.name}</title>
 </head>
 <body>
-	<h1>${student.studentName}</h1>
+	<h1>${student.user.name}</h1>
 	
 	<%--TODO --%>
 	<div align="center">
@@ -27,7 +27,7 @@
     </tr>
     <tr>
       <td width="413">Name*</td>
-      <td colspan="4">${student.studentName}</td>
+      <td colspan="4">${student.user.name}</td>
       </tr>
     <tr>
       <td>Date of Birth*</td>
@@ -46,7 +46,7 @@
       </tr>
     <tr>
       <td>Email Address*</td>
-      <td colspan="4">${student.emailAddress}</td>
+      <td colspan="4">${student.user.emailAddress}</td>
     </tr>
     <tr>
       <td>Nationality*</td>

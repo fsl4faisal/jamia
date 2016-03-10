@@ -4,7 +4,6 @@ import in.ac.jmi.constants.ExaminationName;
 import in.ac.jmi.constants.Flag;
 import in.ac.jmi.constants.Gender;
 import in.ac.jmi.constants.MediumOfExamination;
-import in.ac.jmi.constants.Role;
 import in.ac.jmi.constants.Semester;
 
 import java.util.Date;
@@ -28,8 +27,8 @@ public class Student extends BaseEntity {
 
 	@OneToOne(cascade = CascadeType.ALL, optional = false)
 	@JoinColumn(name = "STUDENT_USER")
-	private User student;
-	
+	private User user;
+
 	@Column(name = "EXAMINATION_NAME", nullable = false)
 	private ExaminationName examinationName;
 
@@ -43,7 +42,7 @@ public class Student extends BaseEntity {
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateOfBirth;
-	
+
 	@OneToOne(cascade = CascadeType.ALL, optional = false)
 	@JoinColumn(name = "STUDENT_PLACE_OF_BIRTH")
 	private PlaceOfBirth placeOfBirth;
@@ -102,8 +101,7 @@ public class Student extends BaseEntity {
 	public Student() {
 	}
 
-	public Student(
-			User student, 
+	public Student(User user, 
 			ExaminationName examinationName,
 			Semester semesterName, 
 			short year, 
@@ -126,7 +124,7 @@ public class Student extends BaseEntity {
 			Set<Subject> subjectTaken, 
 			Flag approveByHodFlag) {
 		super();
-		this.student = student;
+		this.user = user;
 		this.examinationName = examinationName;
 		this.semesterName = semesterName;
 		this.year = year;
@@ -150,12 +148,12 @@ public class Student extends BaseEntity {
 		this.approveByHodFlag = approveByHodFlag;
 	}
 
-	public User getStudent() {
-		return student;
+	public User getUser() {
+		return user;
 	}
 
-	public void setStudent(User student) {
-		this.student = student;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public ExaminationName getExaminationName() {
@@ -326,6 +324,5 @@ public class Student extends BaseEntity {
 	public void setApproveByHodFlag(Flag approveByHodFlag) {
 		this.approveByHodFlag = approveByHodFlag;
 	}
-				 
 
 }

@@ -9,14 +9,15 @@
 	<form action="subject" method="post">
 		<input type="hidden" name="id" value="${subject.id}">
 		<ul>
-			<li>Name:<input type="text" name="paper_name" value="${subject.paperName}"></li>
-			<li>Number:<input type="text" name="paper_number" value="${subject.paperNumber}"></li>
-			<li>Category:
-			<select name="paper_category">
-				<option value="0">(none)</option>
+			<li>Name:<input type="text" name="paperName"
+				value="${subject.paperName}"></li>
+			<li>Number:<input type="text" name="paperNumber"
+				value="${subject.paperNumber}"></li>
+			<li>Category: <select name="paperCategory">
+					<option value="0">(none)</option>
 					<c:forEach var="category" items="${categories}">
 						<c:choose>
-						<%-- enum is tested like below and it is different from the one you learned in marakana --%>
+							<%-- enum is tested like below and it is different from the one you learned in marakana --%>
 							<c:when test="${category.value eq subject.paperCategory.value}">
 								<option value="${category.value}" selected>${category.name}</option>
 							</c:when>
@@ -24,13 +25,12 @@
 								<option value="${category.value}">${category.name}</option>
 							</c:otherwise>
 						</c:choose>
-					</c:forEach>			
-				</select>
+					</c:forEach>
+			</select>
 			</li>
-				
-			<li>Semester:
-			<select name="paper_semester">
-				<option value="0">(none)</option>
+
+			<li>Semester: <select name="paperSemester">
+					<option value="0">(none)</option>
 					<c:forEach var="semester" items="${semesters}">
 						<c:choose>
 							<c:when test="${semester.value eq subject.paperSemester.value}">
@@ -40,14 +40,29 @@
 								<option value="${semester.value}">${semester.name}</option>
 							</c:otherwise>
 						</c:choose>
-					</c:forEach>			
-				</select>
+					</c:forEach>
+			</select>
+			</li>
+
+			<li>Department: <select name="departmentName">
+					<option value="0">(none)</option>
+					<c:forEach var="department" items="${departments}">
+						<c:choose>
+							<c:when test="${department.value eq subject.departmentName.value}">
+								<option value="${department.value}" selected>${department.name}</option>
+							</c:when>
+							<c:otherwise>
+								<option value="${department.value}">${department.name}</option>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+			</select>
 			</li>
 		</ul>
-		
+
 		<input type="submit" value="edit" name="edit">
-	</form>	
-	
+	</form>
+
 	<a href="adminHome">Back to Home</a>
 
 	<form action="subject" method="post">

@@ -32,7 +32,7 @@
         </tr>
 	    <tr>
 	      <td>Year*</td>
-	      <td colspan="4"><input name="year" type="text" id="year"></td>
+	      <td colspan="4"><input name="year" type="text"></td>
         </tr>
 	    <tr>
 	      <td>Part/Semester*</td>
@@ -47,7 +47,7 @@
         </tr>
 	    <tr>
 	      <td width="213">Name*</td>
-	      <td colspan="4"><input type="text" name="student_name"></td>
+	      <td colspan="4"><input type="text" name="name"></td>
         </tr>
 	    <tr>
 	      <td>Date of Birth*</td>

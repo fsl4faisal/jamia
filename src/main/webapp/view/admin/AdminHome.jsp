@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" type="text/css" href="style/style.css" />
+
 <title>Admin Home</title>
 </head>
 <body>
@@ -47,7 +47,7 @@
 			<h1>All Student Details</h1>
 			<ul>
 				<c:forEach var="student" items="${students}">
-					<li><a href="student?id=${student.id}">${student.studentName}</a>
+					<li><a href="student?id=${student.id}">${student.user.name}</a>
 				</c:forEach>
 			</ul>
 			<a href="student?add">Add a new Student</a>
