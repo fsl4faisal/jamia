@@ -53,7 +53,7 @@ public final class edit_jsp extends org.apache.jasper.runtime.HttpJspBase
 
 
     try {
-      response.setContentType("text/html");
+      response.setContentType("text/html; charset=ISO-8859-1");
       pageContext = _jspxFactory.getPageContext(this, request, response,
       			null, true, 8192, true);
       _jspx_page_context = pageContext;
@@ -63,66 +63,121 @@ public final class edit_jsp extends org.apache.jasper.runtime.HttpJspBase
       out = pageContext.getOut();
       _jspx_out = out;
 
+      out.write("<!DOCTYPE html>\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
       out.write("\r\n");
       out.write("<html>\r\n");
       out.write("<head>\r\n");
       out.write("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\">\r\n");
-      out.write("<title>Edit Subject</title>\r\n");
+      out.write("\r\n");
+      out.write("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n");
+      out.write("\r\n");
+      out.write("<link rel=\"stylesheet\"\r\n");
+      out.write("\thref=\"http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css\">\r\n");
+      out.write("<script\r\n");
+      out.write("\tsrc=\"https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js\"></script>\r\n");
+      out.write("<script\r\n");
+      out.write("\tsrc=\"http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js\"></script>\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("<title>Edit Subject ");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${subject.paperName}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
+      out.write("</title>\r\n");
       out.write("</head>\r\n");
       out.write("<body>\r\n");
-      out.write("\t<h1>Edit Subject</h1>\r\n");
-      out.write("\t<form action=\"subject\" method=\"post\">\r\n");
-      out.write("\t\t<input type=\"hidden\" name=\"id\" value=\"");
+      out.write("\r\n");
+      out.write("\t<div class=\"container\">\r\n");
+      out.write("\t\t<div class=\"row\">\r\n");
+      out.write("\t\t\t<div class=\"col-md-12\">\r\n");
+      out.write("\t\t\t\t<div class=\"col-md-4\">\r\n");
+      out.write("\t\t\t\t\t<h2>Edit Subject: ");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${subject.paperName}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
+      out.write("</h2>\r\n");
+      out.write("\t\t\t\t\t<form action=\"subject\" method=\"post\" role=\"form\">\r\n");
+      out.write("\t\t\t\t\t<input type=\"hidden\" name=\"id\" value=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${subject.id}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
       out.write("\">\r\n");
-      out.write("\t\t<ul>\r\n");
-      out.write("\t\t\t<li>Name:<input type=\"text\" name=\"paperName\"\r\n");
-      out.write("\t\t\t\tvalue=\"");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${subject.paperName}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
-      out.write("\"></li>\r\n");
-      out.write("\t\t\t<li>Number:<input type=\"text\" name=\"paperNumber\"\r\n");
-      out.write("\t\t\t\tvalue=\"");
+      out.write("\r\n");
+      out.write("\t\t\t\t\t\t<div class=\"form-group \">\r\n");
+      out.write("\t\t\t\t\t\t\t<label for=\"paperNumber\">Paper Number:</label> <input type=\"text\"\r\n");
+      out.write("\t\t\t\t\t\t\t\tclass=\"form-control\" name=\"paperNumber\" id=\"paperNumber\"\r\n");
+      out.write("\t\t\t\t\t\t\t\tplaceholder=\"Enter paperNumber\" value=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${subject.paperNumber}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
-      out.write("\"></li>\r\n");
-      out.write("\t\t\t<li>Category: <select name=\"paperCategory\">\r\n");
-      out.write("\t\t\t\t\t<option value=\"0\">(none)</option>\r\n");
-      out.write("\t\t\t\t\t");
+      out.write("\"\r\n");
+      out.write("\t\t\t\t\t\t\t\trequired>\r\n");
+      out.write("\t\t\t\t\t\t</div>\r\n");
+      out.write("\r\n");
+      out.write("\t\t\t\t\t\t<div class=\"form-group \">\r\n");
+      out.write("\t\t\t\t\t\t\t<label for=\"paperName\">Paper Name:</label> <input type=\"text\"\r\n");
+      out.write("\t\t\t\t\t\t\t\tclass=\"form-control\" name=\"paperName\" id=\"paperName\"\r\n");
+      out.write("\t\t\t\t\t\t\t\tplaceholder=\"Enter paperName\" value=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${subject.paperName}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
+      out.write("\"\r\n");
+      out.write("\t\t\t\t\t\t\t\trequired>\r\n");
+      out.write("\t\t\t\t\t\t</div>\r\n");
+      out.write("\r\n");
+      out.write("\t\t\t\t\t\t<div class=\"form-group\">\r\n");
+      out.write("\t\t\t\t\t\t\t<label for=\"paperCategory\">Category:</label> <select\r\n");
+      out.write("\t\t\t\t\t\t\t\tname=\"paperCategory\" class=\"form-control\" id=\"paperCategory\"\r\n");
+      out.write("\t\t\t\t\t\t\t\trequired>\r\n");
+      out.write("\t\t\t\t\t\t\t\t");
       if (_jspx_meth_c_005fforEach_005f0(_jspx_page_context))
         return;
       out.write("\r\n");
-      out.write("\t\t\t</select>\r\n");
-      out.write("\t\t\t</li>\r\n");
+      out.write("\t\t\t\t\t\t\t</select>\r\n");
+      out.write("\t\t\t\t\t\t</div>\r\n");
       out.write("\r\n");
-      out.write("\t\t\t<li>Semester: <select name=\"paperSemester\">\r\n");
-      out.write("\t\t\t\t\t<option value=\"0\">(none)</option>\r\n");
-      out.write("\t\t\t\t\t");
+      out.write("\t\t\t\t\t\t<div class=\"form-group\">\r\n");
+      out.write("\t\t\t\t\t\t\t<label for=\"paperSemester\">Semester:</label> <select\r\n");
+      out.write("\t\t\t\t\t\t\t\tname=\"paperSemester\" class=\"form-control\" id=\"paperSemester\"\r\n");
+      out.write("\t\t\t\t\t\t\t\trequired>\r\n");
+      out.write("\r\n");
+      out.write("\t\t\t\t\t\t\t\t");
       if (_jspx_meth_c_005fforEach_005f1(_jspx_page_context))
         return;
       out.write("\r\n");
-      out.write("\t\t\t</select>\r\n");
-      out.write("\t\t\t</li>\r\n");
+      out.write("\t\t\t\t\t\t\t</select>\r\n");
+      out.write("\t\t\t\t\t\t</div>\r\n");
       out.write("\r\n");
-      out.write("\t\t\t<li>Department: <select name=\"departmentName\">\r\n");
-      out.write("\t\t\t\t\t<option value=\"0\">(none)</option>\r\n");
-      out.write("\t\t\t\t\t");
+      out.write("\t\t\t\t\t\t<div class=\"form-group\">\r\n");
+      out.write("\t\t\t\t\t\t\t<label for=\"departmentName\">Department:</label> <select\r\n");
+      out.write("\t\t\t\t\t\t\t\tname=\"departmentName\" class=\"form-control\" id=\"departmentName\"\r\n");
+      out.write("\t\t\t\t\t\t\t\t required>\r\n");
+      out.write("\r\n");
+      out.write("\t\t\t\t\t\t\t\t");
       if (_jspx_meth_c_005fforEach_005f2(_jspx_page_context))
         return;
       out.write("\r\n");
-      out.write("\t\t\t</select>\r\n");
-      out.write("\t\t\t</li>\r\n");
-      out.write("\t\t</ul>\r\n");
+      out.write("\t\t\t\t\t\t\t</select>\r\n");
+      out.write("\t\t\t\t\t\t</div>\r\n");
       out.write("\r\n");
-      out.write("\t\t<input type=\"submit\" value=\"edit\" name=\"edit\">\r\n");
-      out.write("\t</form>\r\n");
       out.write("\r\n");
-      out.write("\t<a href=\"adminHome\">Back to Home</a>\r\n");
+      out.write("\t\t\t\t\t\t<button type=\"submit\" value=\"Edit\" name=\"edit\"\r\n");
+      out.write("\t\t\t\t\t\t\tclass=\"btn btn-info active\">Edit</button>\r\n");
+      out.write("\t\t\t\t\t</form>\r\n");
       out.write("\r\n");
-      out.write("\t<form action=\"subject\" method=\"post\">\r\n");
-      out.write("\t\t<input type=\"hidden\" name=\"id\" value=\"");
+      out.write("\r\n");
+      out.write("\t\t\t\t\t<form action=\"subject\" method=\"post\">\r\n");
+      out.write("\t\t\t\t\t\t<input type=\"hidden\" name=\"id\" value=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${subject.id}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
-      out.write("\"> <input\r\n");
-      out.write("\t\t\ttype=\"submit\" value=\"delete\" name=\"delete\">\r\n");
-      out.write("\t</form>\r\n");
+      out.write("\">\r\n");
+      out.write("\t\t\t\t\t\t<button type=\"submit\" value=\"delete\" name=\"delete\"\r\n");
+      out.write("\t\t\t\t\t\t\tclass=\"btn btn-info active\">Delete</button>\r\n");
+      out.write("\t\t\t\t\t</form>\r\n");
+      out.write("\r\n");
+      out.write("\t\t\t\t\t<a href=\"adminHome\" class=\"btn btn-info\" role=\"button\">Back</a>\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\t\t\t\t</div>\r\n");
+      out.write("\r\n");
+      out.write("\t\t\t</div>\r\n");
+      out.write("\t\t</div>\r\n");
+      out.write("\r\n");
+      out.write("\t</div>\r\n");
       out.write("</body>\r\n");
       out.write("</html>");
     } catch (Throwable t) {
@@ -145,21 +200,21 @@ public final class edit_jsp extends org.apache.jasper.runtime.HttpJspBase
     org.apache.taglibs.standard.tag.rt.core.ForEachTag _jspx_th_c_005fforEach_005f0 = (org.apache.taglibs.standard.tag.rt.core.ForEachTag) _005fjspx_005ftagPool_005fc_005fforEach_0026_005fvar_005fitems.get(org.apache.taglibs.standard.tag.rt.core.ForEachTag.class);
     _jspx_th_c_005fforEach_005f0.setPageContext(_jspx_page_context);
     _jspx_th_c_005fforEach_005f0.setParent(null);
-    // /view/subject/edit.jsp(18,5) name = var type = java.lang.String reqTime = false required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /view/subject/edit.jsp(51,8) name = var type = java.lang.String reqTime = false required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_c_005fforEach_005f0.setVar("category");
-    // /view/subject/edit.jsp(18,5) name = items type = javax.el.ValueExpression reqTime = true required = false fragment = false deferredValue = true expectedTypeName = java.lang.Object deferredMethod = false methodSignature = null
-    _jspx_th_c_005fforEach_005f0.setItems(new org.apache.jasper.el.JspValueExpression("/view/subject/edit.jsp(18,5) '${categories}'",_el_expressionfactory.createValueExpression(_jspx_page_context.getELContext(),"${categories}",java.lang.Object.class)).getValue(_jspx_page_context.getELContext()));
+    // /view/subject/edit.jsp(51,8) name = items type = javax.el.ValueExpression reqTime = true required = false fragment = false deferredValue = true expectedTypeName = java.lang.Object deferredMethod = false methodSignature = null
+    _jspx_th_c_005fforEach_005f0.setItems(new org.apache.jasper.el.JspValueExpression("/view/subject/edit.jsp(51,8) '${categories}'",_el_expressionfactory.createValueExpression(_jspx_page_context.getELContext(),"${categories}",java.lang.Object.class)).getValue(_jspx_page_context.getELContext()));
     int[] _jspx_push_body_count_c_005fforEach_005f0 = new int[] { 0 };
     try {
       int _jspx_eval_c_005fforEach_005f0 = _jspx_th_c_005fforEach_005f0.doStartTag();
       if (_jspx_eval_c_005fforEach_005f0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
         do {
           out.write("\r\n");
-          out.write("\t\t\t\t\t\t");
+          out.write("\t\t\t\t\t\t\t\t\t");
           if (_jspx_meth_c_005fchoose_005f0(_jspx_th_c_005fforEach_005f0, _jspx_page_context, _jspx_push_body_count_c_005fforEach_005f0))
             return true;
           out.write("\r\n");
-          out.write("\t\t\t\t\t");
+          out.write("\t\t\t\t\t\t\t\t");
           int evalDoAfterBody = _jspx_th_c_005fforEach_005f0.doAfterBody();
           if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
             break;
@@ -191,17 +246,15 @@ public final class edit_jsp extends org.apache.jasper.runtime.HttpJspBase
     if (_jspx_eval_c_005fchoose_005f0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
         out.write("\r\n");
-        out.write("\t\t\t\t\t\t\t");
-        out.write("\r\n");
-        out.write("\t\t\t\t\t\t\t");
+        out.write("\t\t\t\t\t\t\t\t\t\t");
         if (_jspx_meth_c_005fwhen_005f0(_jspx_th_c_005fchoose_005f0, _jspx_page_context, _jspx_push_body_count_c_005fforEach_005f0))
           return true;
         out.write("\r\n");
-        out.write("\t\t\t\t\t\t\t");
+        out.write("\t\t\t\t\t\t\t\t\t\t");
         if (_jspx_meth_c_005fotherwise_005f0(_jspx_th_c_005fchoose_005f0, _jspx_page_context, _jspx_push_body_count_c_005fforEach_005f0))
           return true;
         out.write("\r\n");
-        out.write("\t\t\t\t\t\t");
+        out.write("\t\t\t\t\t\t\t\t\t");
         int evalDoAfterBody = _jspx_th_c_005fchoose_005f0.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
           break;
@@ -223,18 +276,18 @@ public final class edit_jsp extends org.apache.jasper.runtime.HttpJspBase
     org.apache.taglibs.standard.tag.rt.core.WhenTag _jspx_th_c_005fwhen_005f0 = (org.apache.taglibs.standard.tag.rt.core.WhenTag) _005fjspx_005ftagPool_005fc_005fwhen_0026_005ftest.get(org.apache.taglibs.standard.tag.rt.core.WhenTag.class);
     _jspx_th_c_005fwhen_005f0.setPageContext(_jspx_page_context);
     _jspx_th_c_005fwhen_005f0.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_005fchoose_005f0);
-    // /view/subject/edit.jsp(21,7) name = test type = boolean reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /view/subject/edit.jsp(53,10) name = test type = boolean reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_c_005fwhen_005f0.setTest(((java.lang.Boolean) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${category.value eq subject.paperCategory.value}", java.lang.Boolean.class, (PageContext)_jspx_page_context, null, false)).booleanValue());
     int _jspx_eval_c_005fwhen_005f0 = _jspx_th_c_005fwhen_005f0.doStartTag();
     if (_jspx_eval_c_005fwhen_005f0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
         out.write("\r\n");
-        out.write("\t\t\t\t\t\t\t\t<option value=\"");
+        out.write("\t\t\t\t\t\t\t\t\t\t\t<option value=\"");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${category.value}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
         out.write("\" selected>");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${category.name}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
         out.write("</option>\r\n");
-        out.write("\t\t\t\t\t\t\t");
+        out.write("\t\t\t\t\t\t\t\t\t\t");
         int evalDoAfterBody = _jspx_th_c_005fwhen_005f0.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
           break;
@@ -260,13 +313,13 @@ public final class edit_jsp extends org.apache.jasper.runtime.HttpJspBase
     if (_jspx_eval_c_005fotherwise_005f0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
         out.write("\r\n");
-        out.write("\t\t\t\t\t\t\t\t<option value=\"");
+        out.write("\t\t\t\t\t\t\t\t\t\t\t<option value=\"");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${category.value}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
         out.write('"');
         out.write('>');
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${category.name}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
         out.write("</option>\r\n");
-        out.write("\t\t\t\t\t\t\t");
+        out.write("\t\t\t\t\t\t\t\t\t\t");
         int evalDoAfterBody = _jspx_th_c_005fotherwise_005f0.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
           break;
@@ -288,21 +341,21 @@ public final class edit_jsp extends org.apache.jasper.runtime.HttpJspBase
     org.apache.taglibs.standard.tag.rt.core.ForEachTag _jspx_th_c_005fforEach_005f1 = (org.apache.taglibs.standard.tag.rt.core.ForEachTag) _005fjspx_005ftagPool_005fc_005fforEach_0026_005fvar_005fitems.get(org.apache.taglibs.standard.tag.rt.core.ForEachTag.class);
     _jspx_th_c_005fforEach_005f1.setPageContext(_jspx_page_context);
     _jspx_th_c_005fforEach_005f1.setParent(null);
-    // /view/subject/edit.jsp(34,5) name = var type = java.lang.String reqTime = false required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /view/subject/edit.jsp(70,8) name = var type = java.lang.String reqTime = false required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_c_005fforEach_005f1.setVar("semester");
-    // /view/subject/edit.jsp(34,5) name = items type = javax.el.ValueExpression reqTime = true required = false fragment = false deferredValue = true expectedTypeName = java.lang.Object deferredMethod = false methodSignature = null
-    _jspx_th_c_005fforEach_005f1.setItems(new org.apache.jasper.el.JspValueExpression("/view/subject/edit.jsp(34,5) '${semesters}'",_el_expressionfactory.createValueExpression(_jspx_page_context.getELContext(),"${semesters}",java.lang.Object.class)).getValue(_jspx_page_context.getELContext()));
+    // /view/subject/edit.jsp(70,8) name = items type = javax.el.ValueExpression reqTime = true required = false fragment = false deferredValue = true expectedTypeName = java.lang.Object deferredMethod = false methodSignature = null
+    _jspx_th_c_005fforEach_005f1.setItems(new org.apache.jasper.el.JspValueExpression("/view/subject/edit.jsp(70,8) '${semesters}'",_el_expressionfactory.createValueExpression(_jspx_page_context.getELContext(),"${semesters}",java.lang.Object.class)).getValue(_jspx_page_context.getELContext()));
     int[] _jspx_push_body_count_c_005fforEach_005f1 = new int[] { 0 };
     try {
       int _jspx_eval_c_005fforEach_005f1 = _jspx_th_c_005fforEach_005f1.doStartTag();
       if (_jspx_eval_c_005fforEach_005f1 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
         do {
           out.write("\r\n");
-          out.write("\t\t\t\t\t\t");
+          out.write("\t\t\t\t\t\t\t\t\t");
           if (_jspx_meth_c_005fchoose_005f1(_jspx_th_c_005fforEach_005f1, _jspx_page_context, _jspx_push_body_count_c_005fforEach_005f1))
             return true;
           out.write("\r\n");
-          out.write("\t\t\t\t\t");
+          out.write("\t\t\t\t\t\t\t\t");
           int evalDoAfterBody = _jspx_th_c_005fforEach_005f1.doAfterBody();
           if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
             break;
@@ -334,15 +387,15 @@ public final class edit_jsp extends org.apache.jasper.runtime.HttpJspBase
     if (_jspx_eval_c_005fchoose_005f1 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
         out.write("\r\n");
-        out.write("\t\t\t\t\t\t\t");
+        out.write("\t\t\t\t\t\t\t\t\t\t");
         if (_jspx_meth_c_005fwhen_005f1(_jspx_th_c_005fchoose_005f1, _jspx_page_context, _jspx_push_body_count_c_005fforEach_005f1))
           return true;
         out.write("\r\n");
-        out.write("\t\t\t\t\t\t\t");
+        out.write("\t\t\t\t\t\t\t\t\t\t");
         if (_jspx_meth_c_005fotherwise_005f1(_jspx_th_c_005fchoose_005f1, _jspx_page_context, _jspx_push_body_count_c_005fforEach_005f1))
           return true;
         out.write("\r\n");
-        out.write("\t\t\t\t\t\t");
+        out.write("\t\t\t\t\t\t\t\t\t");
         int evalDoAfterBody = _jspx_th_c_005fchoose_005f1.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
           break;
@@ -364,18 +417,18 @@ public final class edit_jsp extends org.apache.jasper.runtime.HttpJspBase
     org.apache.taglibs.standard.tag.rt.core.WhenTag _jspx_th_c_005fwhen_005f1 = (org.apache.taglibs.standard.tag.rt.core.WhenTag) _005fjspx_005ftagPool_005fc_005fwhen_0026_005ftest.get(org.apache.taglibs.standard.tag.rt.core.WhenTag.class);
     _jspx_th_c_005fwhen_005f1.setPageContext(_jspx_page_context);
     _jspx_th_c_005fwhen_005f1.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_005fchoose_005f1);
-    // /view/subject/edit.jsp(36,7) name = test type = boolean reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /view/subject/edit.jsp(72,10) name = test type = boolean reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_c_005fwhen_005f1.setTest(((java.lang.Boolean) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${semester.value eq subject.paperSemester.value}", java.lang.Boolean.class, (PageContext)_jspx_page_context, null, false)).booleanValue());
     int _jspx_eval_c_005fwhen_005f1 = _jspx_th_c_005fwhen_005f1.doStartTag();
     if (_jspx_eval_c_005fwhen_005f1 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
         out.write("\r\n");
-        out.write("\t\t\t\t\t\t\t\t<option value=\"");
+        out.write("\t\t\t\t\t\t\t\t\t\t\t<option value=\"");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${semester.value}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
         out.write("\" selected>");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${semester.name}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
         out.write("</option>\r\n");
-        out.write("\t\t\t\t\t\t\t");
+        out.write("\t\t\t\t\t\t\t\t\t\t");
         int evalDoAfterBody = _jspx_th_c_005fwhen_005f1.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
           break;
@@ -401,13 +454,13 @@ public final class edit_jsp extends org.apache.jasper.runtime.HttpJspBase
     if (_jspx_eval_c_005fotherwise_005f1 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
         out.write("\r\n");
-        out.write("\t\t\t\t\t\t\t\t<option value=\"");
+        out.write("\t\t\t\t\t\t\t\t\t\t\t<option value=\"");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${semester.value}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
         out.write('"');
         out.write('>');
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${semester.name}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
         out.write("</option>\r\n");
-        out.write("\t\t\t\t\t\t\t");
+        out.write("\t\t\t\t\t\t\t\t\t\t");
         int evalDoAfterBody = _jspx_th_c_005fotherwise_005f1.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
           break;
@@ -429,21 +482,21 @@ public final class edit_jsp extends org.apache.jasper.runtime.HttpJspBase
     org.apache.taglibs.standard.tag.rt.core.ForEachTag _jspx_th_c_005fforEach_005f2 = (org.apache.taglibs.standard.tag.rt.core.ForEachTag) _005fjspx_005ftagPool_005fc_005fforEach_0026_005fvar_005fitems.get(org.apache.taglibs.standard.tag.rt.core.ForEachTag.class);
     _jspx_th_c_005fforEach_005f2.setPageContext(_jspx_page_context);
     _jspx_th_c_005fforEach_005f2.setParent(null);
-    // /view/subject/edit.jsp(49,5) name = var type = java.lang.String reqTime = false required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /view/subject/edit.jsp(89,8) name = var type = java.lang.String reqTime = false required = false fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_c_005fforEach_005f2.setVar("department");
-    // /view/subject/edit.jsp(49,5) name = items type = javax.el.ValueExpression reqTime = true required = false fragment = false deferredValue = true expectedTypeName = java.lang.Object deferredMethod = false methodSignature = null
-    _jspx_th_c_005fforEach_005f2.setItems(new org.apache.jasper.el.JspValueExpression("/view/subject/edit.jsp(49,5) '${departments}'",_el_expressionfactory.createValueExpression(_jspx_page_context.getELContext(),"${departments}",java.lang.Object.class)).getValue(_jspx_page_context.getELContext()));
+    // /view/subject/edit.jsp(89,8) name = items type = javax.el.ValueExpression reqTime = true required = false fragment = false deferredValue = true expectedTypeName = java.lang.Object deferredMethod = false methodSignature = null
+    _jspx_th_c_005fforEach_005f2.setItems(new org.apache.jasper.el.JspValueExpression("/view/subject/edit.jsp(89,8) '${departments}'",_el_expressionfactory.createValueExpression(_jspx_page_context.getELContext(),"${departments}",java.lang.Object.class)).getValue(_jspx_page_context.getELContext()));
     int[] _jspx_push_body_count_c_005fforEach_005f2 = new int[] { 0 };
     try {
       int _jspx_eval_c_005fforEach_005f2 = _jspx_th_c_005fforEach_005f2.doStartTag();
       if (_jspx_eval_c_005fforEach_005f2 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
         do {
           out.write("\r\n");
-          out.write("\t\t\t\t\t\t");
+          out.write("\t\t\t\t\t\t\t\t\t");
           if (_jspx_meth_c_005fchoose_005f2(_jspx_th_c_005fforEach_005f2, _jspx_page_context, _jspx_push_body_count_c_005fforEach_005f2))
             return true;
           out.write("\r\n");
-          out.write("\t\t\t\t\t");
+          out.write("\t\t\t\t\t\t\t\t");
           int evalDoAfterBody = _jspx_th_c_005fforEach_005f2.doAfterBody();
           if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
             break;
@@ -475,15 +528,15 @@ public final class edit_jsp extends org.apache.jasper.runtime.HttpJspBase
     if (_jspx_eval_c_005fchoose_005f2 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
         out.write("\r\n");
-        out.write("\t\t\t\t\t\t\t");
+        out.write("\t\t\t\t\t\t\t\t\t\t");
         if (_jspx_meth_c_005fwhen_005f2(_jspx_th_c_005fchoose_005f2, _jspx_page_context, _jspx_push_body_count_c_005fforEach_005f2))
           return true;
         out.write("\r\n");
-        out.write("\t\t\t\t\t\t\t");
+        out.write("\t\t\t\t\t\t\t\t\t\t");
         if (_jspx_meth_c_005fotherwise_005f2(_jspx_th_c_005fchoose_005f2, _jspx_page_context, _jspx_push_body_count_c_005fforEach_005f2))
           return true;
         out.write("\r\n");
-        out.write("\t\t\t\t\t\t");
+        out.write("\t\t\t\t\t\t\t\t\t");
         int evalDoAfterBody = _jspx_th_c_005fchoose_005f2.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
           break;
@@ -505,18 +558,18 @@ public final class edit_jsp extends org.apache.jasper.runtime.HttpJspBase
     org.apache.taglibs.standard.tag.rt.core.WhenTag _jspx_th_c_005fwhen_005f2 = (org.apache.taglibs.standard.tag.rt.core.WhenTag) _005fjspx_005ftagPool_005fc_005fwhen_0026_005ftest.get(org.apache.taglibs.standard.tag.rt.core.WhenTag.class);
     _jspx_th_c_005fwhen_005f2.setPageContext(_jspx_page_context);
     _jspx_th_c_005fwhen_005f2.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_c_005fchoose_005f2);
-    // /view/subject/edit.jsp(51,7) name = test type = boolean reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
+    // /view/subject/edit.jsp(91,10) name = test type = boolean reqTime = true required = true fragment = false deferredValue = false expectedTypeName = null deferredMethod = false methodSignature = null
     _jspx_th_c_005fwhen_005f2.setTest(((java.lang.Boolean) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${department.value eq subject.departmentName.value}", java.lang.Boolean.class, (PageContext)_jspx_page_context, null, false)).booleanValue());
     int _jspx_eval_c_005fwhen_005f2 = _jspx_th_c_005fwhen_005f2.doStartTag();
     if (_jspx_eval_c_005fwhen_005f2 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
         out.write("\r\n");
-        out.write("\t\t\t\t\t\t\t\t<option value=\"");
+        out.write("\t\t\t\t\t\t\t\t\t\t\t<option value=\"");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${department.value}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
         out.write("\" selected>");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${department.name}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
         out.write("</option>\r\n");
-        out.write("\t\t\t\t\t\t\t");
+        out.write("\t\t\t\t\t\t\t\t\t\t");
         int evalDoAfterBody = _jspx_th_c_005fwhen_005f2.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
           break;
@@ -542,13 +595,13 @@ public final class edit_jsp extends org.apache.jasper.runtime.HttpJspBase
     if (_jspx_eval_c_005fotherwise_005f2 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
       do {
         out.write("\r\n");
-        out.write("\t\t\t\t\t\t\t\t<option value=\"");
+        out.write("\t\t\t\t\t\t\t\t\t\t\t<option value=\"");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${department.value}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
         out.write('"');
         out.write('>');
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${department.name}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
         out.write("</option>\r\n");
-        out.write("\t\t\t\t\t\t\t");
+        out.write("\t\t\t\t\t\t\t\t\t\t");
         int evalDoAfterBody = _jspx_th_c_005fotherwise_005f2.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
           break;

@@ -10,27 +10,16 @@ import javax.persistence.Table;
 @Table(name="USER")
 public class User extends BaseEntity{
 	
-	@Column(name="NAME")
+	@Column(name="NAME", nullable = false)
 	private String name;
 	
-	@Column(name="ROLE")
+	@Column(name="ROLE", nullable = false)
 	private Role role;
 	
 	@Column(name = "EMAIL_ADDRESS", nullable = false)
 	private String emailAddress;
 	
 	public User(){}
-	
-	
-	
-	public User(String name, Role role, String emailAddress) {
-		super();
-		this.name = name;
-		this.role = role;
-		this.emailAddress = emailAddress;
-	}
-
-
 
 	public String getName() {
 		return name;
@@ -51,6 +40,14 @@ public class User extends BaseEntity{
 
 	public void setEmailAddress(String emailAddress) {
 		this.emailAddress = emailAddress;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "\nUser [name=" + name + ", role=" + role + ", emailAddress="
+				+ emailAddress + "]";
 	}
 	
 	

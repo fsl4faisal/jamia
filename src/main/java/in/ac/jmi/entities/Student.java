@@ -1,5 +1,6 @@
 package in.ac.jmi.entities;
 
+import in.ac.jmi.constants.CourseType;
 import in.ac.jmi.constants.ExaminationName;
 import in.ac.jmi.constants.Flag;
 import in.ac.jmi.constants.Gender;
@@ -40,7 +41,7 @@ public class Student extends BaseEntity {
 
 	@Column(name = "DATE_OF_BIRTH", nullable = false)
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(pattern = "dd-MM-yyyy")
 	private Date dateOfBirth;
 
 	@OneToOne(cascade = CascadeType.ALL, optional = false)
@@ -97,55 +98,15 @@ public class Student extends BaseEntity {
 
 	@Column(name = "APPROVED_BY_HOD")
 	private Flag approveByHodFlag;
+	
+	//TODO
+	@Column(name="COURSE_TYPE",nullable=false)
+	private CourseType courseType;
+	
+	@Column(name="STUDENT_ID",nullable=false)
+	private int studentId;
 
 	public Student() {
-	}
-
-	public Student(User user, 
-			ExaminationName examinationName,
-			Semester semesterName, 
-			short year, 
-			Date dateOfBirth,
-			PlaceOfBirth placeOfBirth, 
-			String nationality, 
-			String religion,
-			Gender gender, 
-			String fatherName, 
-			String motherName,
-			String spouseName, 
-			Address correspondenceAddress,
-			Address permanentAddress, 
-			String mobileNumber,
-			MediumOfExamination mediumOfExamination, 
-			String enrollmentNumber,
-			Flag quotaFlag, 
-			Flag disqualifiedFlag,
-			DisqualifiedDescription disqualifiedDescription,
-			Set<Subject> subjectTaken, 
-			Flag approveByHodFlag) {
-		super();
-		this.user = user;
-		this.examinationName = examinationName;
-		this.semesterName = semesterName;
-		this.year = year;
-		this.dateOfBirth = dateOfBirth;
-		this.placeOfBirth = placeOfBirth;
-		this.nationality = nationality;
-		this.religion = religion;
-		this.gender = gender;
-		this.fatherName = fatherName;
-		this.motherName = motherName;
-		this.spouseName = spouseName;
-		this.correspondenceAddress = correspondenceAddress;
-		this.permanentAddress = permanentAddress;
-		this.mobileNumber = mobileNumber;
-		this.mediumOfExamination = mediumOfExamination;
-		this.enrollmentNumber = enrollmentNumber;
-		this.quotaFlag = quotaFlag;
-		this.disqualifiedFlag = disqualifiedFlag;
-		this.disqualifiedDescription = disqualifiedDescription;
-		this.subjectTaken = subjectTaken;
-		this.approveByHodFlag = approveByHodFlag;
 	}
 
 	public User getUser() {
@@ -324,5 +285,25 @@ public class Student extends BaseEntity {
 	public void setApproveByHodFlag(Flag approveByHodFlag) {
 		this.approveByHodFlag = approveByHodFlag;
 	}
+
+	@Override
+	public String toString() {
+		return "Student [user=" + user + ", examinationName=" + examinationName
+				+ ", semesterName=" + semesterName + ", year=" + year
+				+ ", dateOfBirth=" + dateOfBirth + ", placeOfBirth="
+				+ placeOfBirth + ", nationality=" + nationality + ", religion="
+				+ religion + ", gender=" + gender + ", fatherName="
+				+ fatherName + ", motherName=" + motherName + ", spouseName="
+				+ spouseName + ", correspondenceAddress="
+				+ correspondenceAddress + ", permanentAddress="
+				+ permanentAddress + ", mobileNumber=" + mobileNumber
+				+ ", mediumOfExamination=" + mediumOfExamination
+				+ ", enrollmentNumber=" + enrollmentNumber + ", quotaFlag="
+				+ quotaFlag + ", disqualifiedFlag=" + disqualifiedFlag
+				+ ", disqualifiedDescription=" + disqualifiedDescription
+				+ ", subjectTaken=" + subjectTaken + ", approveByHodFlag="
+				+ approveByHodFlag + "]";
+	}
+	
 
 }

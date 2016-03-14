@@ -88,6 +88,16 @@ public class DisqualifiedDescription extends BaseEntity{
 	public void setPeriodOfPunishment(String periodOfPunishment) {
 		this.periodOfPunishment = periodOfPunishment;
 	}
+
+	@Override
+	public String toString() {
+		return "\nDisqualifiedDescription [previousUniversityBoardName="
+				+ previousUniversityBoardName + ", previousExaminationName="
+				+ previousExaminationName + ", previousYear=" + previousYear
+				+ ", previousEnrollmentNumber=" + previousEnrollmentNumber
+				+ ", previousRollNumber=" + previousRollNumber
+				+ ", periodOfPunishment=" + periodOfPunishment + "]";
+	}
 	
 		
 }

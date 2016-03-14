@@ -30,16 +30,6 @@ public class Subject extends BaseEntity {
 	public Subject() {
 	}
 
-	public Subject(String paperNumber, String paperName,
-			PaperCategory paperCategory, Semester paperSemester,DepartmentName departmentName) {
-		super();
-		this.paperNumber = paperNumber;
-		this.paperName = paperName;
-		this.paperCategory = paperCategory;
-		this.paperSemester = paperSemester;
-		this.departmentName=departmentName;
-	}
-
 	public String getPaperNumber() {
 		return paperNumber;
 	}
@@ -79,5 +69,14 @@ public class Subject extends BaseEntity {
 	public void setDepartmentName(DepartmentName departmentName) {
 		this.departmentName = departmentName;
 	}
+
+	@Override
+	public String toString() {
+		return "\nSubject [paperNumber=" + paperNumber + ", paperName="
+				+ paperName + ", paperCategory=" + paperCategory
+				+ ", paperSemester=" + paperSemester + ", departmentName="
+				+ departmentName + "]";
+	}
+	
 
 }

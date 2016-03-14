@@ -25,13 +25,6 @@ public class PlaceOfBirth extends BaseEntity{
 
 	public PlaceOfBirth(){}
 	
-	public PlaceOfBirth(String town, String distt, String state) {
-		super();
-		this.town = town;
-		this.distt = distt;
-		this.state = state;
-	}
-
 	public String getTown() {
 		return town;
 	}
@@ -43,5 +36,25 @@ public class PlaceOfBirth extends BaseEntity{
 	public String getState() {
 		return state;
 	}
+
+	
+	public void setTown(String town) {
+		this.town = town;
+	}
+
+	public void setDistt(String distt) {
+		this.distt = distt;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	@Override
+	public String toString() {
+		return "\nPlaceOfBirth [town=" + town + ", distt=" + distt + ", state="
+				+ state + "]";
+	}
+	
 
 }

@@ -22,15 +22,6 @@ public class Address extends BaseEntity{
 
 	public Address(){}
 	
-	
-	public Address(String street, String city, String state, int pincode) {
-		super();
-		this.street = street;
-		this.city = city;
-		this.state = state;
-		this.pincode = pincode;
-	}
-
 	public String getStreet() {
 		return street;
 	}
@@ -46,5 +37,30 @@ public class Address extends BaseEntity{
 	public int getPincode() {
 		return pincode;
 	}
+
+
+	
+	public void setStreet(String street) {
+		this.street = street;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public void setPincode(int pincode) {
+		this.pincode = pincode;
+	}
+
+	@Override
+	public String toString() {
+		return "\nAddress [street=" + street + ", city=" + city + ", state="
+				+ state + ", pincode=" + pincode + "]";
+	}
+	
 
 }
