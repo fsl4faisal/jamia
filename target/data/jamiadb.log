@@ -16,15 +16,20 @@ alter table STUDENT add constraint FKBACA0E1B81CB573C foreign key (STUDENT_USER)
 alter table STUDENT add constraint FKBACA0E1B244B527B foreign key (STUDENT_DISQUALIFIED_DESCRIPTION) references DISQUALIFIED_DESCRIPTION
 alter table STUDENT_SUBJECT add constraint FKFA194AE81A68A289 foreign key (subjectTaken_ID) references SUBJECT
 alter table STUDENT_SUBJECT add constraint FKFA194AE8874CDC78 foreign key (STUDENT_ID) references STUDENT
-/*C8*/SET SCHEMA PUBLIC
-INSERT INTO USER VALUES(1,0,'wofala@hotmail.com','Frances Shelton',0)
+/*C6*/SET SCHEMA PUBLIC
+INSERT INTO SUBJECT VALUES(1,0,0,2,'Montana Mckee','348',0)
 COMMIT
-DELETE FROM USER WHERE ID=1
-INSERT INTO USER VALUES(1,1,'wofala@hotmail.comss','Frances Shelton',0)
+/*C3*/SET SCHEMA PUBLIC
+INSERT INTO SUBJECT VALUES(2,0,1,3,'Jael Walter','797',0)
 COMMIT
-/*C5*/SET SCHEMA PUBLIC
-DELETE FROM USER WHERE ID=1
-INSERT INTO USER VALUES(1,2,'wofala@hotmail.comssss','Frances Shelton',0)
+/*C6*/DELETE FROM SUBJECT WHERE ID=2
+INSERT INTO SUBJECT VALUES(2,1,1,3,'Jael Walterww','797',0)
 COMMIT
-/*C8*/DELETE FROM USER WHERE ID=1
+/*C3*/INSERT INTO USER VALUES(1,0,'jugonuqic@yahoo.com','Latifah Matthews',1)
+COMMIT
+/*C6*/INSERT INTO ADDRESS VALUES(1,0,'Ut laborum Autem fugiat laboris maxime nobis ea laboris error sit nesciunt facilis pariatur Consequatur Esse',7878,'Fugiat nobis et est culpa quibusdam exercitationem voluptatibus rem et ab eos aliquip maxime est sed nulla','Ad itaque et voluptatem natus nobis impedit aut dolor delectus officia molestiae amet est non magna voluptas')
+INSERT INTO ADDRESS VALUES(2,0,'Tenetur numquam non qui quaerat vero minim',7878,'Sit laborum Dignissimos dolore quo accusamus placeat nemo sint sequi cupiditate ipsam iste mollitia est id','Facere sunt sint nesciunt laborum Non quia repellendus Laudantium labore cupiditate nulla officia saepe recusandae Iusto dignissimos minima explicabo')
+INSERT INTO PLACE_OF_BIRTH VALUES(1,0,'Nam fugit in dolore et in alias esse doloremque ad delectus quia reprehenderit corporis quisquam','Quia non sunt eos dolores','In ut et quia rem')
+INSERT INTO USER VALUES(2,0,'zobypiz@gmail.com','Gemma Orr',2)
+INSERT INTO STUDENT VALUES(1,0,1,'1991-02-08',0,'240',1,'Malik Hester',0,0,'459','Bianca Kirby','Ab itaque iure qui voluptate dignissimos culpa voluptatem quo Nam deserunt impedit inventore eius enim quod ea enim impedit nostrum',0,'Officiis nulla sequi fugiat est laboriosam hic',2,'Beau Cohen',1997,1,NULL,2,1,2)
 COMMIT

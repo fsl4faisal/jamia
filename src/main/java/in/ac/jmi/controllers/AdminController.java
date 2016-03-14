@@ -57,52 +57,33 @@ public class AdminController {
 
 	@RequestMapping(value = "/user", params = "add", method = RequestMethod.GET)
 	public String getAddUser(Model model) {
-		ArrayList<Role> roles=new ArrayList<Role>();
-		
-		//From user Add only admin and head of department can be added
+		ArrayList<Role> roles = new ArrayList<Role>();
+
+		// From user Add only admin and head of department can be added
 		roles.add(Role.ADMIN);
 		roles.add(Role.HEAD_OF_DEPARTMENT);
 		model.addAttribute("roles", roles);
 		return "user/add";
 	}
 
-/*	@RequestMapping(value = "/user", params = "add", method = RequestMethod.POST)
-	public String postAddUser(
-			@RequestParam("name") String name,
-			@RequestParam("role") Role role,
-			@RequestParam("email_address") String emailAddress
-			) {
-		System.out.println("Inside postAddUser");
-		User user = new User(name, role,emailAddress);
-		user = userRepository.save(user);
-		return "redirect:user?id=" + user.getId();
-	}
-*/	
-	
 	@RequestMapping(value = "/user", params = "add", method = RequestMethod.POST)
 	public String postAddUser(@ModelAttribute User user) {
 		System.out.println("Inside postAddUser");
 		user = userRepository.save(user);
 		return "redirect:user?id=" + user.getId();
 	}
-	
-	
 
 	@RequestMapping(value = "/user", method = RequestMethod.GET)
-	public String postAddUser(
-			@RequestParam("id") long id, 
-			Model model) {
+	public String postAddUser(@RequestParam("id") long id, Model model) {
 		model.addAttribute("user", userRepository.findOne(id));
 		return "user/view";
 	}
 
 	@RequestMapping(value = "/user", params = "edit", method = RequestMethod.GET)
-	public String getEditUser(
-			@RequestParam("id") long id, 
-			Model model) {
+	public String getEditUser(@RequestParam("id") long id, Model model) {
 		model.addAttribute("user", userRepository.findOne(id));
-		
-		ArrayList<Role> roles=new ArrayList<Role>();
+
+		ArrayList<Role> roles = new ArrayList<Role>();
 		roles.add(Role.ADMIN);
 		roles.add(Role.HEAD_OF_DEPARTMENT);
 		model.addAttribute("roles", roles);
@@ -114,14 +95,14 @@ public class AdminController {
 	public String postEditUser(@ModelAttribute User user) {
 
 		User newUser = userRepository.findOne(user.getId());
-		
+
 		newUser.setEmailAddress(user.getEmailAddress());
 		newUser.setName(user.getName());
 		newUser.setRole(user.getRole());
 
 		newUser = userRepository.save(newUser);
 		// redirect to view page
-		return "redirect:user?id=" + user.getId();
+		return "redirect:user?id=" + newUser.getId();
 	}
 
 	@RequestMapping(value = "/user", params = "delete", method = RequestMethod.POST)
@@ -146,18 +127,9 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/subject", params = "add", method = RequestMethod.POST)
-	public String postAddSubject(
-			@RequestParam("paper_name") String paperName,
-			@RequestParam("paper_number") String paperNumber,
-			@RequestParam("paper_category") PaperCategory paperCategory,
-			@RequestParam("paper_semester") Semester paperSemester,
-			@RequestParam("department_name") DepartmentName departmentName 
-			) {
+	public String postAddSubject(@ModelAttribute Subject subject) {
 		System.out.println("Inside postAddSubject");
-
-		Subject subject = new Subject(paperNumber, paperName, paperCategory,
-				paperSemester,departmentName);
-
+		
 		subject = subjectRepository.save(subject);
 		return "redirect:subject?id=" + subject.getId();
 
@@ -170,9 +142,7 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/subject", params = "edit", method = RequestMethod.GET)
-	public String getEditSubject(
-			@RequestParam("id") long id, 
-			Model model) {
+	public String getEditSubject(@RequestParam("id") long id, Model model) {
 		model.addAttribute("subject", subjectRepository.findOne(id));
 		model.addAttribute("categories", PaperCategory.values());
 		model.addAttribute("semesters", Semester.values());
@@ -182,24 +152,18 @@ public class AdminController {
 
 	@RequestMapping(value = "/subject", params = "edit", method = RequestMethod.POST)
 	@Transactional
-	public String postEditSubject(
-			@RequestParam("id") long id,
-			@RequestParam("paper_name") String paperName,
-			@RequestParam("paper_number") String paperNumber,
-			@RequestParam("paper_category") PaperCategory paperCategory,
-			@RequestParam("paper_semester") Semester paperSemester,
-			@RequestParam("department_name") DepartmentName departmentName) {
+	public String postEditSubject(@ModelAttribute Subject subject) {
 
-		Subject subject = subjectRepository.findOne(id);
-		subject.setPaperCategory(paperCategory);
-		subject.setPaperName(paperName);
-		subject.setPaperNumber(paperNumber);
-		subject.setPaperSemester(paperSemester);
-		subject.setDepartmentName(departmentName);
+		Subject updatedSubject=subjectRepository.findOne(subject.getId());
+		updatedSubject.setDepartmentName(subject.getDepartmentName());
+		updatedSubject.setPaperCategory(subject.getPaperCategory());
+		updatedSubject.setPaperName(subject.getPaperName());
+		updatedSubject.setPaperSemester(subject.getPaperSemester());
+		updatedSubject.setPaperNumber(subject.getPaperNumber());
 
-		subject = subjectRepository.save(subject);
+		updatedSubject = subjectRepository.save(updatedSubject);
 		// redirect to view page
-		return "redirect:subject?id=" + subject.getId();
+		return "redirect:subject?id=" + updatedSubject.getId();
 	}
 
 	@RequestMapping(value = "/subject", params = "delete", method = RequestMethod.POST)
@@ -218,7 +182,8 @@ public class AdminController {
 		model.addAttribute("examination_names", ExaminationName.values());
 		model.addAttribute("flags", Flag.values());
 		model.addAttribute("genders", Gender.values());
-		model.addAttribute("medium_of_examinations", MediumOfExamination.values());
+		model.addAttribute("medium_of_examinations",
+				MediumOfExamination.values());
 		model.addAttribute("semesters", Semester.values());
 
 		return "student/add";
@@ -232,7 +197,7 @@ public class AdminController {
 			@RequestParam("semester_name") Semester semesterName,
 			@RequestParam("name") String name,
 
-			@RequestParam("date_of_birth") @DateTimeFormat(pattern="yyyy-MM-dd") Date dateOfBirth,//TODO
+			@RequestParam("date_of_birth") @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateOfBirth,// TODO
 
 			@RequestParam("DOB_town") String dobTown,
 			@RequestParam("DOB_distt") String dobDistt,
@@ -242,11 +207,11 @@ public class AdminController {
 			@RequestParam("nationality") String nationality,
 			@RequestParam("religion") String religion,
 			@RequestParam("gender") Gender gender,
-			
+
 			@RequestParam("father_name") String fatherName,
 			@RequestParam("mother_name") String motherName,
 			@RequestParam("spouse_name") String spouseName,
-			
+
 			@RequestParam("mobile_number") String mobileNumber,
 
 			@RequestParam("correspondence_street") String correspondenceStreet,
@@ -262,7 +227,7 @@ public class AdminController {
 			@RequestParam("medium_of_examination") MediumOfExamination mediumOfExamination,
 			@RequestParam("enrollment_number") String enrollmentNumber,
 			@RequestParam("belong_to_SC_ST_OBC") Flag quotaFlag,
-			
+
 			@RequestParam("rusticted_expelled_disqualified_debarred_flag") Flag disqualifiedFlag,
 
 			@RequestParam("previous_university_board") String previousUniversityBoardName,
@@ -280,32 +245,18 @@ public class AdminController {
 
 		Address permanentAddress = new Address(permanentStreet, permanentCity,
 				permanentState, permanentPincode);
-		
-		PlaceOfBirth placeOfBirth = new PlaceOfBirth(dobTown, dobDistt,dobState);
-		
-		User user=new User(name,Role.STUDENT,emailAddress);
 
-		Student student = new Student(
-				user,
-				examinationName, 
-				semesterName, 
-				year,
-				dateOfBirth, 
-				placeOfBirth, 
-				nationality, 
-				religion,
-				gender, 
-				fatherName,
-				motherName, 
-				spouseName,
-				correspondenceAddress, 
-				permanentAddress, 
-				mobileNumber,
-				mediumOfExamination, 
-				enrollmentNumber, 
-				quotaFlag,
-				disqualifiedFlag, 
-				null, null, Flag.NO);
+		PlaceOfBirth placeOfBirth = new PlaceOfBirth(dobTown, dobDistt,
+				dobState);
+
+		User user = new User(name, Role.STUDENT, emailAddress);
+
+		Student student = new Student(user, examinationName, semesterName,
+				year, dateOfBirth, placeOfBirth, nationality, religion, gender,
+				fatherName, motherName, spouseName, correspondenceAddress,
+				permanentAddress, mobileNumber, mediumOfExamination,
+				enrollmentNumber, quotaFlag, disqualifiedFlag, null, null,
+				Flag.NO);
 
 		student = studentRepository.save(student);
 		return "redirect:student?id=" + student.getId();
@@ -317,9 +268,7 @@ public class AdminController {
 		return "student/view";
 	}
 
-	
-	
-//TODO from here
+	// TODO from here
 	@RequestMapping(value = "/student", params = "edit", method = RequestMethod.GET)
 	public String getEditStudent(@RequestParam("id") long id, Model model) {
 		model.addAttribute("student", studentRepository.findOne(id));
@@ -333,8 +282,8 @@ public class AdminController {
 			@RequestParam String name, @RequestParam("role") Role role) {
 
 		Student student = studentRepository.findOne(id);
-//		student.setName(name);
-//		student.setRole(role);
+		// student.setName(name);
+		// student.setRole(role);
 
 		student = studentRepository.save(student);
 		// redirect to view page

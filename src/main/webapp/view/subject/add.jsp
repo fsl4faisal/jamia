@@ -26,7 +26,7 @@
 
 
 
-			<li>Semester: <select name="paperSecurity">
+			<li>Semester: <select name="paperSemester">
 					<option value="0">(none)</option>
 					<c:forEach var="semester" items="${semesters}">
 						<option value="${semester.value}">${semester.name}</option>
