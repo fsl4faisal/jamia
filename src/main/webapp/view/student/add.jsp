@@ -1,205 +1,271 @@
+<!DOCTYPE html>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<%--For datepicker --%>
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+<link rel="stylesheet" href="/resources/demos/style.css">
+
+<script>
+	$(function() {
+		$("#datepicker").datepicker();
+	});
+
+	$(".readonly").keydown(function(e) {
+		e.preventDefault();
+	});
+</script>
+
 <title>Add Student</title>
 </head>
 <body>
-	<h1>Add Student</h1>
 
-	<form action="student" method="post">
-		<div align="center">
-			<input type="hidden" name="add"> 
-			<input type="hidden"
-				name="user.role" value="STUDENT">
-			<table width="823" border="1">
-				<tr>
-					<th colspan="5" scope="col">Student Details</th>
-				</tr>
-				<tr>
-					<td>Examination*</td>
-					<td colspan="4"><select name="examinationName">
-							<option value="0">(none)</option>
-							<c:forEach var="examination_name" items="${examination_names}">
-								<option value="${examination_name.value}">${examination_name.name}</option>
-							</c:forEach>
-					</select></td>
-				</tr>
-				<tr>
-					<td>Year*</td>
-					<td colspan="4"><input name="year" type="text"></td>
-				</tr>
-				<tr>
-					<td>Part/Semester*</td>
-					<td colspan="4"><select name="semesterName">
-							<option value="0">(none)</option>
-							<c:forEach var="semester" items="${semesters}">
-								<option value="${semester.value}">${semester.name}</option>
-							</c:forEach>
-					</select></td>
-				</tr>
-				<tr>
-					<td width="213">Name*</td>
-					<td colspan="4"><input type="text" name="user.name"></td>
-				</tr>
-				<tr>
-					<td>Date of Birth*</td>
-					<td colspan="4"><input type="text" name="dateOfBirth">(dd-mm-yyyy)</td>
-				</tr>
-				<tr>
-					<td rowspan="2">Place of Birth*</td>
-					<td width="144">Town*</td>
-					<td width="144">Distt.*</td>
-					<td colspan="2">State*</td>
-				</tr>
-				<tr>
-					<td><input type="text" name="placeOfBirth.town"></td>
-					<td><input type="text" name="placeOfBirth.distt"></td>
-					<td colspan="2"><input type="text" name="placeOfBirth.state"></td>
-				</tr>
-				<tr>
-					<td>Email Address*</td>
-					<td colspan="4"><input type="text" name="user.emailAddress"></td>
-				</tr>
-				<tr>
-					<td>Nationality*</td>
-					<td colspan="4"><input type="text" name="nationality"></td>
-				</tr>
-				<tr>
-					<td>Religion*</td>
-					<td colspan="4"><input type="text" name="religion"></td>
-				</tr>
-				<tr>
-					<td>Gender*</td>
-					<td colspan="4"><select name="gender">
-							<option value="0">(none)</option>
-							<c:forEach var="gender" items="${genders}">
-								<option value="${gender.value}">${gender.name}</option>
-							</c:forEach>
-					</select></td>
-				</tr>
-				<tr>
-					<td>Father's Name*</td>
-					<td colspan="4"><input type="text" name="fatherName"></td>
-				</tr>
-				<tr>
-					<td>Mother's Name*</td>
-					<td colspan="4"><input type="text" name="motherName"></td>
-				</tr>
-				<tr>
-					<td>Spouse's Name*</td>
-					<td colspan="4"><input type="text" name="spouseName"></td>
-				</tr>
-				<tr>
-					<td>Mobile Number*</td>
-					<td colspan="4"><input type="text" name="mobileNumber"></td>
-				</tr>
-				<tr>
-					<td rowspan="2">Correspondence Address*</td>
-					<td>Street</td>
-					<td>City</td>
-					<td width="144">State</td>
-					<td width="144">Pincode</td>
-				</tr>
-				<tr>
-					<td><input type="text" name="correspondenceAddress.street"></td>
-					<td><input type="text" name="correspondenceAddress.city"></td>
-					<td><input type="text" name="correspondenceAddress.state"></td>
-					<td><input type="number" name="correspondenceAddress.pincode"></td>
-				</tr>
-				<tr>
-					<td rowspan="2">Permanent Address*</td>
-					<td>Street</td>
-					<td>City</td>
-					<td>State</td>
-					<td>Pincode</td>
-				</tr>
-				<tr>
-					<td><input type="text" name="permanentAddress.street"></td>
-					<td><input type="text" name="permanentAddress.city"></td>
-					<td><input type="text" name="permanentAddress.state"></td>
-					<td><input type="number" name="permanentAddress.pincode"></td>
-				</tr>
-				<tr>
-					<td>Medium of Examination*</td>
-					<td colspan="4"><select name="mediumOfExamination">
-							<option value="0">(none)</option>
-							<c:forEach var="medium_of_examination"
-								items="${medium_of_examinations}">
-								<option value="${medium_of_examination.value}">${medium_of_examination.name}</option>
-							</c:forEach>
-					</select></td>
-				</tr>
-				<tr>
-					<td>Enrollment Number*</td>
-					<td colspan="4"><input type="text" name="enrollmentNumber"></td>
-				</tr>
-				<tr>
-					<td>Belong to S.C/S.T/O.B.C*</td>
-					<td colspan="4"><select name="quotaFlag">
-							<option value="0">(none)</option>
-							<c:forEach var="flag" items="${flags}">
-								<option value="${flag.value}">${flag.name}</option>
-							</c:forEach>
-					</select></td>
-				</tr>
-			</table>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<h2>Add Student</h2>
+					<form action="student" method="post" role="form">
+
+						<div class="form-group">
+							<label for="role">Role:</label> <select name="user.role"
+								class="form-control" id="role" required>
+								<c:forEach var="role" items="${roles}">
+									<option value="${role.value}">${role.name}</option>
+								</c:forEach>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label for="courseType">Course Type:</label> <select
+								name="courseType" class="form-control" id="courseType"
+								placeholder="Enter Course Type" required>
+								<option disabled selected></option>
+								<c:forEach var="course_type" items="${course_types}">
+									<option value="${course_type.value}">${course_type.name}</option>
+								</c:forEach>
+							</select>
+						</div>
+
+
+						<div class="form-group">
+							<label for="examinationName">Examination:</label> <select
+								name="examinationName" class="form-control" id="examinationName"
+								placeholder="Enter Examination Name" required>
+								<option disabled selected></option>
+								<c:forEach var="examination_name" items="${examination_names}">
+									<option value="${examination_name.value}">${examination_name.name}</option>
+								</c:forEach>
+							</select>
+						</div>
+
+						<div class="form-group ">
+							<label for="year">Year:</label> <input type="number"
+								class="form-control" name="year" id="year"
+								placeholder="Enter year" required>
+						</div>
+
+						<div class="form-group">
+							<label for="semesterName">Part/Semester:</label> <select
+								name="semesterName" class="form-control" id="semesterName"
+								placeholder="Enter semester Name" required>
+								<option disabled selected></option>
+								<c:forEach var="semester" items="${semesters}">
+									<option value="${semester.value}">${semester.name}</option>
+								</c:forEach>
+							</select>
+						</div>
+
+						<div class="form-group ">
+							<label for="year">Name:</label> <input type="text"
+								class="form-control" name="user.name" id="name"
+								placeholder="Enter Name" required>
+						</div>
+						
+						<%--class readonly will prevent the form for submission if value is empty --%>
+						<div class="form-group ">
+							<label for="dateOfBirth">Date of Birth:</label> <input
+								type="text" class="form-control readonly" name="dateOfBirth"
+								id="datepicker" required>
+
+						</div>
+
+						<div class="form-group ">
+							<label for="placeOfBirth">Place of Birth:</label> <input
+								type="text" class="form-control" name="placeOfBirth.town"
+								id="placeOfBirth.town" placeholder="Enter Town" required>
+							<input type="text" class="form-control" name="placeOfBirth.distt"
+								id="placeOfBirth.distt" placeholder="Enter Distt" required>
+							<input type="text" class="form-control" name="placeOfBirth.state"
+								id="placeOfBirth.state" placeholder="Enter State" required>
+						</div>
+
+						<div class="form-group ">
+							<label for="year">Email Address:</label> <input type="email"
+								class="form-control" name="user.emailAddress"
+								id="user.emailAddress" placeholder="Enter Email Address"
+								required>
+						</div>
+
+						<div class="form-group ">
+							<label for="year">Nationality:</label> <input type="text"
+								class="form-control" name="nationality" id="nationality"
+								placeholder="Enter Nationality" required>
+						</div>
+
+						<div class="form-group ">
+							<label for="year">Religion:</label> <input type="text"
+								class="form-control" name="religion" id="religion"
+								placeholder="Enter Religion" required>
+						</div>
+
+						<div class="form-group">
+							<label for="gender">Gender:</label> <select name="gender"
+								class="form-control" id="gender"
+								placeholder="Enter semester Name" required>
+								<option disabled selected></option>
+								<c:forEach var="gender" items="${genders}">
+									<option value="${gender.value}">${gender.name}</option>
+								</c:forEach>
+							</select>
+						</div>
+
+						<div class="form-group ">
+							<label for="fatherName">Father's Name:</label> <input type="text"
+								class="form-control" name="fatherName" id="fatherName"
+								placeholder="Enter Father Name" required>
+						</div>
+
+						<div class="form-group ">
+							<label for="motherName">Mother's Name:</label> <input type="text"
+								class="form-control" name="motherName" id="motherName"
+								placeholder="Enter Mother Name" required>
+						</div>
+
+						<div class="form-group ">
+							<label for="spouseName">Spouse's Name:</label> <input type="text"
+								class="form-control" name="spouseName" id="spouseName"
+								placeholder="Enter Spouse Name" required>
+						</div>
+
+						<div class="form-group ">
+							<label for="mobileNumber">Mobile Number:</label> <input
+								type="number" class="form-control" name="mobileNumber"
+								id="mobileNumber" placeholder="Enter Mobile Number" required>
+						</div>
+
+						<div class="form-group ">
+							<label for="correspondenceAddress">Correspondence
+								Address:</label> <input type="text" class="form-control"
+								name="correspondenceAddress.street"
+								id="correspondenceAddress.street" placeholder="Enter Street"
+								required> <input type="text" class="form-control"
+								name="correspondenceAddress.city"
+								id="correspondenceAddress.city" placeholder="Enter City"
+								required> <input type="text" class="form-control"
+								name="correspondenceAddress.state"
+								id="correspondenceAddress.state" placeholder="Enter State"
+								required> <input type="number" class="form-control"
+								name="correspondenceAddress.pincode"
+								id="correspondenceAddress.pincode" placeholder="Enter Pincode"
+								required>
+						</div>
+
+						<div class="form-group ">
+							<label for="permanenteAddress">Permanent Address:</label> <input
+								type="text" class="form-control" name="permanentAddress.street"
+								id="permanentAddress.street" placeholder="Enter Street" required>
+							<input type="text" class="form-control"
+								name="permanentAddress.city" id="permanentAddress.city"
+								placeholder="Enter City" required> <input type="text"
+								class="form-control" name="permanentAddress.state"
+								id="permanentAddress.state" placeholder="Enter State" required>
+							<input type="number" class="form-control"
+								name="permanentAddress.pincode" id="permanentAddress.pincode"
+								placeholder="Enter Pincode" required>
+						</div>
+
+
+						<div class="form-group">
+							<label for="mediumOfExamination">Medium of Examination:</label> <select
+								name="mediumOfExamination" class="form-control"
+								id="mediumOfExamination" placeholder="Enter mediumOfExamination"
+								required>
+								<option disabled selected></option>
+								<c:forEach var="medium_of_examination"
+									items="${medium_of_examinations}">
+									<option value="${medium_of_examination.value}">${medium_of_examination.name}</option>
+								</c:forEach>
+							</select>
+						</div>
+
+						<div class="form-group ">
+							<label for="enrollmentNumber">Enrollment Number:</label> <input
+								type="text" class="form-control" name="enrollmentNumber"
+								id="enrollmentNumber" placeholder="Enter Enrollment Number"
+								required>
+						</div>
+
+						<div class="form-group ">
+							<label for="studentId">Student Id:</label> <input type="number"
+								class="form-control" name="studentId" id="studentId"
+								placeholder="Enter student Id" required>
+						</div>
+
+						<div class="form-group">
+							<label for="quotaFlag">Belong to S.C/S.T/O.B.C:</label> <select
+								name="quotaFlag" class="form-control" id="quotaFlag"
+								placeholder="Enter quota" required>
+								<option disabled selected></option>
+								<c:forEach var="flag" items="${flags}">
+									<option value="${flag.value}">${flag.name}</option>
+								</c:forEach>
+							</select>
+						</div>
+
+						<p align="left">
+							<strong> Below Details are to be entered by Student.</strong>
+						</p>
+
+						
+						<button type="submit" value="Submit" name="add"
+							class="btn btn-info active">Submit</button>
+						<a href="adminHome" class="btn btn-info" role="button">Back</a>
+
+
+
+					</form>
+
+
+				</div>
+				<div class="col-md-4">
+					<div class="col-md-4"></div>
+				</div>
+			</div>
 		</div>
-		<p align="left">
-			<strong> Below Details are to be entered by Student.</strong>
-		</p>
-		<div align="center">
-			<table width="835" border="1">
-				<tr>
-					<th width="656" scope="col">Were you ever rustigated/
-						expelled/ disqualified/ debarred from appearing at the
-						examination?</th>
-					<th width="163" scope="col"><select name="disqualifiedFlag">
-							<option value="0">(none)</option>
-							<c:forEach var="flag" items="${flags}">
-								<option value="${flag.value}">${flag.name}</option>
-							</c:forEach>
-					</select></th>
-				</tr>
-			</table>
-		</div>
-		<p align="center">&nbsp;</p>
-		<div align="center">
-			<table height="100" border="1">
-				<tr>
-					<td width="152" rowspan="2"><strong>Details for above
-							point</strong></td>
-					<td width="144"><strong>University/Board</strong></td>
-					<td width="144"><strong>Examination</strong></td>
-					<td width="144"><strong>Year</strong></td>
-					<td width="144"><strong>Enrollment No.</strong></td>
-					<td width="144"><strong>Roll No.</strong></td>
-					<td width="140"><strong>Period of punishment</strong></td>
-				</tr>
-				<tr>
-					<td><input type="text"
-						name="disqualifiedDescription.previousUniversityBoardName"></td>
-					<td><input type="text"
-						name="disqualifiedDescription.previousExaminationName"></td>
-					<td><input type="text"
-						name="disqualifiedDescription.previousYear"></td>
-					<td><input type="text"
-						name="disqualifiedDescription.previousEnrollmentNumber"></td>
-					<td><input type="text"
-						name="disqualifiedDescription.previousRollNumber"></td>
-					<td><input type="text"
-						name="disqualifiedDescription.periodOfPunishment"></td>
-				</tr>
-			</table>
-		</div>
-		<p align="center">
-			<input type="submit" name="add" value="Submit" />
-		</p>
-	</form>
-	<a href="adminHome">Back to Home</a>
+	</div>
 </body>
 </html>

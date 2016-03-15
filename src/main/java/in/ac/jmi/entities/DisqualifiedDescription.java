@@ -15,7 +15,7 @@ public class DisqualifiedDescription extends BaseEntity{
 	private String previousExaminationName;
 	
 	@Column(name="PREVIOUS_YEAR")
-	private short previousYear;
+	private String previousYear;
 	
 	@Column(name="PREVIOUS_ENROLLMENT_NUMBER")
 	private String previousEnrollmentNumber;
@@ -28,18 +28,7 @@ public class DisqualifiedDescription extends BaseEntity{
 		
 	public DisqualifiedDescription(){}
 
-	public DisqualifiedDescription(String previousUniversityBoardName,
-			String previousExaminationName, short previousYear,
-			String previousEnrollmentNumber, String previousRollNumber,
-			String periodOfPunishment) {
-		super();
-		this.previousUniversityBoardName = previousUniversityBoardName;
-		this.previousExaminationName = previousExaminationName;
-		this.previousYear = previousYear;
-		this.previousEnrollmentNumber = previousEnrollmentNumber;
-		this.previousRollNumber = previousRollNumber;
-		this.periodOfPunishment = periodOfPunishment;
-	}
+	
 
 	public String getPreviousUniversityBoardName() {
 		return previousUniversityBoardName;
@@ -57,11 +46,11 @@ public class DisqualifiedDescription extends BaseEntity{
 		this.previousExaminationName = previousExaminationName;
 	}
 
-	public short getPreviousYear() {
+	public String getPreviousYear() {
 		return previousYear;
 	}
 
-	public void setPreviousYear(short previousYear) {
+	public void setPreviousYear(String previousYear) {
 		this.previousYear = previousYear;
 	}
 

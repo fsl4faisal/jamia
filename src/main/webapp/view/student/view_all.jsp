@@ -205,16 +205,65 @@
 								<th scope="row">Belong to S.C/S.T/O.B.C</th>
 								<td>${student.quotaFlag.name}</td>
 							</tr>
-
+							
+							<tr>
+								<th scope="row">Were you ever rustigated/ expelled/ disqualified/ debarred from appearing at the examination?</th>
+								<td>${student.disqualifiedFlag.name}</td>
+							</tr>
 
 						</tbody>
 					</table>
+					
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th colspan="4">Details for above point:</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th>Previous University/Board name</th>
+								<td>${student.disqualifiedDescription.previousUniversityBoardName}</td>
+							</tr>
 
-					<a href="adminHome" class="btn btn-info" role="button">Back</a> <a
+							<tr>
+								<th scope="row">Previous Examination Name</th>
+								<td>${student.disqualifiedDescription.previousExaminationName}</td>
+							</tr>
+
+							<tr>
+								<th scope="row">Previous Year</th>
+								<td>${student.disqualifiedDescription.previousYear}</td>
+							</tr>
+
+							<tr>
+								<th scope="row">Previous Enrollment Number</th>
+								<td>${student.disqualifiedDescription.previousEnrollmentNumber}</td>
+							</tr>
+							
+							<tr>
+								<th scope="row">Previous Roll number</th>
+								<td>${student.disqualifiedDescription.previousRollNumber}</td>
+							</tr>
+							
+							<tr>
+								<th scope="row">Period of punishment</th>
+								<td>${student.disqualifiedDescription.periodOfPunishment}</td>
+							</tr>
+
+						</tbody>
+
+					</table>
+					
+					
+
+					<a href="adminHome" class="btn btn-info" role="button">Back</a>
+					 <a
 						href="student?id=${student.id}&edit" class="btn btn-info"
-						role="button">Edit Student</a> <a
-						href="rustigatedDetails?id=${student.id}&edit"
-						class="btn btn-info" role="button">Proceed</a>
+						role="button">Edit Student</a> 
+						<a
+						href="examForm?id=${student.id}&edit"
+						class="btn btn-info" role="button">Proceed To Exam Form</a>
 
 				</div>
 				<div class="col-md-2"></div>

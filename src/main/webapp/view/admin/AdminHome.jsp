@@ -22,7 +22,7 @@
 
 			<%-- Below is List for administrative users --%>
 
-			<h1>All Administrative User Details</h1>
+			<h1>All User Details</h1>
 			<ul>
 				<c:forEach var="user" items="${users}">
 					<li><a href="user?id=${user.id}">${user.name}</a>

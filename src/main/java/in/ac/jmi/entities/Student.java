@@ -41,7 +41,7 @@ public class Student extends BaseEntity {
 
 	@Column(name = "DATE_OF_BIRTH", nullable = false)
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "dd-MM-yyyy")
+	@DateTimeFormat(pattern = "MM/dd/yyyy")
 	private Date dateOfBirth;
 
 	@OneToOne(cascade = CascadeType.ALL, optional = false)
@@ -86,7 +86,7 @@ public class Student extends BaseEntity {
 	@Column(name = "QUOTA_FLAG", nullable = false)
 	private Flag quotaFlag;
 
-	@Column(name = "DISQUALIFIED_FLAG", nullable = false)
+	@Column(name = "DISQUALIFIED_FLAG")
 	private Flag disqualifiedFlag;
 
 	@OneToOne(cascade = CascadeType.ALL)
@@ -105,6 +105,7 @@ public class Student extends BaseEntity {
 	
 	@Column(name="STUDENT_ID",nullable=false)
 	private int studentId;
+
 
 	public Student() {
 	}
@@ -286,6 +287,24 @@ public class Student extends BaseEntity {
 		this.approveByHodFlag = approveByHodFlag;
 	}
 
+	
+	
+	public CourseType getCourseType() {
+		return courseType;
+	}
+
+	public void setCourseType(CourseType courseType) {
+		this.courseType = courseType;
+	}
+
+	public int getStudentId() {
+		return studentId;
+	}
+
+	public void setStudentId(int studentId) {
+		this.studentId = studentId;
+	}
+
 	@Override
 	public String toString() {
 		return "Student [user=" + user + ", examinationName=" + examinationName
@@ -302,8 +321,9 @@ public class Student extends BaseEntity {
 				+ quotaFlag + ", disqualifiedFlag=" + disqualifiedFlag
 				+ ", disqualifiedDescription=" + disqualifiedDescription
 				+ ", subjectTaken=" + subjectTaken + ", approveByHodFlag="
-				+ approveByHodFlag + "]";
+				+ approveByHodFlag + ", courseType=" + courseType
+				+ ", studentId=" + studentId + "]";
 	}
-	
 
+	
 }
