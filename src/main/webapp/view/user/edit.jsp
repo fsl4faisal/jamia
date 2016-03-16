@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <html>
 <head>
@@ -17,6 +18,19 @@
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
+<style>
+.error {
+	color: #ff0000;
+}
+
+.errorblock {
+	color: #000;
+	background-color: #ffEEEE;
+	border: 3px solid #ff0000;
+	padding: 8px;
+	margin: 16px;
+}
+</style>
 
 <title>Edit User ${user.name}</title>
 </head>
@@ -27,8 +41,11 @@
 			<div class="col-md-12">
 				<div class="col-md-4">
 					<h2>Edit User: ${user.name}</h2>
-					<form action="user" method="post" role="form">
-						<input type="hidden" name="id" value="${user.id}" required>
+					<form:form action="user" method="post" role="form"
+						commandName="user">
+						<form:errors path="*" cssClass="errorblock" element="div" />
+						
+						<form:input type="hidden" path="id" value="${user.id}" required="required"/>
 
 						<div class="form-group ">
 							<label for="user">User Name:</label> <input type="text"
@@ -38,16 +55,18 @@
 
 
 						<div class="form-group">
-							<label for="email">Email Address:</label> <input type="email"
-								name="emailAddress" class="form-control" id="email"
-								placeholder="Enter email Address" value="${user.emailAddress}" required>
+							<label for="email">Email Address:</label> 
+							<form:input type="email"
+								path="emailAddress" class="form-control" id="email"
+								placeholder="Enter email Address" value="${user.emailAddress}"
+								required="required"/>
 						</div>
 
 						<div class="form-group">
 							<label for="role">Role:</label> 
-							<select name="role"
-								class="form-control" id="role" placeholder="Enter Role" required>
-								
+							<form:select path="role"
+								class="form-control" id="role" placeholder="Enter Role" required="required">
+
 								<c:forEach var="role" items="${roles}">
 									<c:choose>
 										<%-- enum is tested like below and it is different from the one you learned in marakana --%>
@@ -59,20 +78,20 @@
 										</c:otherwise>
 									</c:choose>
 								</c:forEach>
-							</select>
+							</form:select>
 
 						</div>
 
 						<button type="submit" value="Edit" name="edit"
 							class="btn btn-info active">Edit</button>
-					</form>
+					</form:form>
 
 
-					<form action="user" method="post">
-						<input type="hidden" name="id" value="${user.id}">
+					<form:form action="user" method="post" commandName="user">
+						<form:input type="hidden" path="id" value="${user.id}"/>
 						<button type="submit" value="delete" name="delete"
 							class="btn btn-info active">Delete</button>
-					</form>
+					</form:form>
 
 					<a href="adminHome" class="btn btn-info" role="button">Back</a>
 

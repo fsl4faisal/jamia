@@ -46,8 +46,8 @@
 					</table>
 
 					<a href="adminHome" class="btn btn-info" role="button">Back</a> 
-					<a href="user?id=${user.id}&edit" class="btn btn-info" role="button">Edit User</a>
-				
+					<a href="${user.url}&edit" class="btn btn-info" role="button">Edit User</a>
+							
 
 				</div>
 				<div class="col-md-4"></div>

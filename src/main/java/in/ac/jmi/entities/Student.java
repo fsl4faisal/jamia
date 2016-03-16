@@ -24,7 +24,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "STUDENT")
-public class Student extends BaseEntity {
+public class Student extends UrlEntity {
 
 	@OneToOne(cascade = CascadeType.ALL, optional = false)
 	@JoinColumn(name = "STUDENT_USER")

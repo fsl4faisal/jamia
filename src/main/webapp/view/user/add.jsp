@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <html>
 <head>
@@ -17,6 +18,19 @@
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
+<style>
+.error {
+	color: #ff0000;
+}
+
+.errorblock {
+	color: #000;
+	background-color: #ffEEEE;
+	border: 3px solid #ff0000;
+	padding: 8px;
+	margin: 16px;
+}
+</style>
 
 <title>Add User</title>
 </head>
@@ -27,39 +41,43 @@
 			<div class="col-md-12">
 				<div class="col-md-4">
 					<h2>Add User</h2>
-					<form action="user" method="post" role="form">
-
+					<form:form action="user" method="post" role="form"
+						commandName="user">
+						<form:errors path="*" cssClass="errorblock" element="div" />
 
 						<div class="form-group ">
-							<label for="user">User Name:</label> 
-							<input type="text"
-								class="form-control" name="name" id="name"
-								placeholder="Enter User Name" required>
+							<label for="user">User Name:</label>
+
+							<form:input type="text" class="form-control" path="name"
+								id="name" placeholder="Enter User Name" />
+
 						</div>
 
 
 						<div class="form-group">
-							<label for="email">Email Address:</label> <input type="email"
-								name="emailAddress" class="form-control" id="email"
-								placeholder="Enter email Address" required>
+							<label for="email">Email Address:</label>
+							<form:input type="email" path="emailAddress" class="form-control"
+								id="email" placeholder="Enter Email Address" required="requried" />
+
 						</div>
 
 						<div class="form-group">
-							<label for="role">Role:</label> 
-							<select name="role"
-								class="form-control" id="role" placeholder="Enter Role" required>
+							<label for="role">Role:</label>
+							<form:select path="role" class="form-control" id="role"
+								required="requried">
 								<option disabled selected></option>
 								<c:forEach var="role" items="${roles}">
 									<option value="${role.value}">${role.name}</option>
 								</c:forEach>
-							</select>
+							</form:select>
+
 						</div>
 
 						<button type="submit" value="Submit" name="add"
 							class="btn btn-info active">Submit</button>
 						<a href="adminHome" class="btn btn-info" role="button">Back</a>
 
-					</form>
+					</form:form>
 
 
 				</div>

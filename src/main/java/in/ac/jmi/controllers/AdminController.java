@@ -15,20 +15,19 @@ import in.ac.jmi.entities.User;
 import in.ac.jmi.repositories.StudentRepository;
 import in.ac.jmi.repositories.SubjectRepository;
 import in.ac.jmi.repositories.UserRepository;
-import in.ac.jmi.service.UserService;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Query;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -47,25 +46,23 @@ public class AdminController {
 
 	@Autowired
 	private StudentRepository studentRepository;
-	
-	
+
 	/*
 	 * Displaying Admin Home page with all the information from users and
 	 * Subjects
 	 */
 
 	@InitBinder
-	public void initBinder(WebDataBinder binder) {		
+	public void initBinder(WebDataBinder binder) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(
+				dateFormat, true));
 	}
 
 	@RequestMapping(value = "/adminHome", method = RequestMethod.GET)
 	public String getAdminHome(Model model) {
-		
-		Query query=
-		
-		model.addAttribute("users", userRepository.findAll());
+
+		model.addAttribute("users", userRepository.adminUsers(Role.STUDENT));
 		model.addAttribute("subjects", subjectRepository.findAll());
 		model.addAttribute("students", studentRepository.findAll());
 		return "admin/AdminHome";
@@ -79,14 +76,28 @@ public class AdminController {
 		roles.add(Role.ADMIN);
 		roles.add(Role.HEAD_OF_DEPARTMENT);
 		model.addAttribute("roles", roles);
+		model.addAttribute("user", new User());
 		return "user/add";
 	}
 
 	@RequestMapping(value = "/user", params = "add", method = RequestMethod.POST)
-	public String postAddUser(@ModelAttribute User user) {
-		System.out.println("Inside postAddUser");
-		user = userRepository.save(user);
-		return "redirect:user?id=" + user.getId();
+	public String postAddUser(@ModelAttribute @Valid User user,
+			BindingResult result, Model model) {
+
+		if (result.hasErrors()) {
+			System.out.println(result.getAllErrors().toString());
+
+			ArrayList<Role> roles = new ArrayList<Role>();
+			roles.add(Role.ADMIN);
+			roles.add(Role.HEAD_OF_DEPARTMENT);
+			model.addAttribute("roles", roles);
+			return "user/add";
+		} else {
+			System.out.println("Inside postAddUser");
+			user = userRepository.save(user);
+			return "redirect:user?id=" + user.getId();
+		}
+
 	}
 
 	@RequestMapping(value = "/user", method = RequestMethod.GET)
@@ -108,17 +119,29 @@ public class AdminController {
 
 	@RequestMapping(value = "/user", params = "edit", method = RequestMethod.POST)
 	@Transactional
-	public String postEditUser(@ModelAttribute User user) {
+	public String postEditUser(@ModelAttribute @Valid User user,
+			BindingResult result, Model model) {
+		
+		
+		if (result.hasErrors()) {
+			System.out.println(result.getAllErrors().toString());
 
-		User newUser = userRepository.findOne(user.getId());
+			ArrayList<Role> roles = new ArrayList<Role>();
+			roles.add(Role.ADMIN);
+			roles.add(Role.HEAD_OF_DEPARTMENT);
+			model.addAttribute("roles", roles);
+			return "user/edit";
+		} else {
+			User newUser = userRepository.findOne(user.getId());
 
-		newUser.setEmailAddress(user.getEmailAddress());
-		newUser.setName(user.getName());
-		newUser.setRole(user.getRole());
+			newUser.setEmailAddress(user.getEmailAddress());
+			newUser.setName(user.getName());
+			newUser.setRole(user.getRole());
 
-		newUser = userRepository.save(newUser);
-		// redirect to view page
-		return "redirect:user?id=" + newUser.getId();
+			newUser = userRepository.save(newUser);
+			// redirect to view page
+			return "redirect:user?id=" + newUser.getId();
+		}
 	}
 
 	@RequestMapping(value = "/user", params = "delete", method = RequestMethod.POST)
@@ -171,7 +194,7 @@ public class AdminController {
 	public String postEditSubject(@ModelAttribute Subject subject) {
 
 		Subject updatedSubject = subjectRepository.findOne(subject.getId());
-		
+
 		updatedSubject.setDepartmentName(subject.getDepartmentName());
 		updatedSubject.setPaperCategory(subject.getPaperCategory());
 		updatedSubject.setPaperName(subject.getPaperName());
@@ -203,7 +226,7 @@ public class AdminController {
 				MediumOfExamination.values());
 		model.addAttribute("semesters", Semester.values());
 		model.addAttribute("course_types", CourseType.values());
-		
+
 		ArrayList<Role> roles = new ArrayList<Role>();
 		roles.add(Role.STUDENT);
 		model.addAttribute("roles", roles);
@@ -232,10 +255,9 @@ public class AdminController {
 		return "student/view";
 	}
 
-	
 	@RequestMapping(value = "/student", params = "edit", method = RequestMethod.GET)
 	public String getEditStudent(@RequestParam("id") long id, Model model) {
-		
+
 		model.addAttribute("student", studentRepository.findOne(id));
 		model.addAttribute("examination_names", ExaminationName.values());
 		model.addAttribute("flags", Flag.values());
@@ -245,7 +267,6 @@ public class AdminController {
 		model.addAttribute("semesters", Semester.values());
 		model.addAttribute("course_types", CourseType.values());
 
-		
 		ArrayList<Role> roles = new ArrayList<Role>();
 		// sending the role of student only since it can not be changed to
 		// anything else
@@ -257,8 +278,8 @@ public class AdminController {
 	@RequestMapping(value = "/student", params = "edit", method = RequestMethod.POST)
 	@Transactional
 	public String postEditStudent(@ModelAttribute Student student) {
-		Student updatedStudent=studentRepository.findOne(student.getId());
-		
+		Student updatedStudent = studentRepository.findOne(student.getId());
+
 		updatedStudent.setCourseType(student.getCourseType());
 		updatedStudent.setExaminationName(student.getExaminationName());
 		updatedStudent.setYear(student.getYear());
@@ -273,13 +294,14 @@ public class AdminController {
 		updatedStudent.setMotherName(student.getMotherName());
 		updatedStudent.setSpouseName(student.getSpouseName());
 		updatedStudent.setMobileNumber(student.getMobileNumber());
-		updatedStudent.setCorrespondenceAddress(student.getCorrespondenceAddress());
+		updatedStudent.setCorrespondenceAddress(student
+				.getCorrespondenceAddress());
 		updatedStudent.setPermanentAddress(student.getPermanentAddress());
 		updatedStudent.setMediumOfExamination(student.getMediumOfExamination());
 		updatedStudent.setEnrollmentNumber(student.getEnrollmentNumber());
 		updatedStudent.setStudentId(student.getStudentId());
 		updatedStudent.setQuotaFlag(student.getQuotaFlag());
-		
+
 		updatedStudent = studentRepository.save(updatedStudent);
 		return "redirect:student?id=" + updatedStudent.getId();
 	}
@@ -289,44 +311,43 @@ public class AdminController {
 		studentRepository.delete(studentRepository.findOne(id));
 		return "redirect:adminHome";
 	}
-	
+
 	/*
 	 * 
 	 * Student Rustigated CRUD
-	 * 
 	 */
-	
+
 	@RequestMapping(value = "/rustigatedDetails", params = "edit", method = RequestMethod.GET)
-	public String getEditRustigatedDetails(@RequestParam("id") long id, Model model) {
-		
+	public String getEditRustigatedDetails(@RequestParam("id") long id,
+			Model model) {
+
 		model.addAttribute("student", studentRepository.findOne(id));
 		model.addAttribute("flags", Flag.values());
-		
+
 		return "student/editRustigatedDetails";
 	}
-	
+
 	@RequestMapping(value = "/rustigatedDetails", params = "edit", method = RequestMethod.POST)
 	@Transactional
 	public String postEditRustigatedDetails(@ModelAttribute Student student) {
-		Student updatedStudent=studentRepository.findOne(student.getId());
-		
+		Student updatedStudent = studentRepository.findOne(student.getId());
+
 		updatedStudent.setDisqualifiedFlag(student.getDisqualifiedFlag());
-		updatedStudent.setDisqualifiedDescription(student.getDisqualifiedDescription());
+		updatedStudent.setDisqualifiedDescription(student
+				.getDisqualifiedDescription());
 		System.out.println("Inside postEditRustigatedDetails");
 		System.out.println(student);
 		System.out.println("Updated Student");
-		System.out.println(updatedStudent); 
+		System.out.println(updatedStudent);
 		student = studentRepository.save(updatedStudent);
 		return "redirect:rustigatedDetails?id=" + updatedStudent.getId();
 	}
-	
-	
+
 	@RequestMapping(value = "/rustigatedDetails", method = RequestMethod.GET)
-	public String postEditRustigatedDetails(@RequestParam("id") long id, Model model) {
+	public String postEditRustigatedDetails(@RequestParam("id") long id,
+			Model model) {
 		model.addAttribute("student", studentRepository.findOne(id));
 		return "student/view_all";
 	}
-
-	
 
 }

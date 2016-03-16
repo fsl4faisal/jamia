@@ -25,7 +25,7 @@
 			<h1>All User Details</h1>
 			<ul>
 				<c:forEach var="user" items="${users}">
-					<li><a href="user?id=${user.id}">${user.name}</a>
+					<li><a href="${user.url}">${user.name}</a>
 				</c:forEach>
 			</ul>
 			<a href="user?add">Add a new User</a>
