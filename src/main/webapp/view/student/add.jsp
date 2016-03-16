@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <html>
 <head>
@@ -28,6 +29,21 @@
 
 <link rel="stylesheet" href="/resources/demos/style.css">
 
+<style>
+.error {
+	color: #ff0000;
+}
+
+.errorblock {
+	color: #000;
+	background-color: #ffEEEE;
+	border: 3px solid #ff0000;
+	padding: 8px;
+	margin: 16px;
+}
+</style>
+
+
 <script>
 	$(function() {
 		$("#datepicker").datepicker();
@@ -37,6 +53,7 @@
 		e.preventDefault();
 	});
 </script>
+
 
 <title>Add Student</title>
 </head>
@@ -48,216 +65,236 @@
 				<div class="col-md-4"></div>
 				<div class="col-md-4">
 					<h2>Add Student</h2>
-					<form action="student" method="post" role="form">
+					<form:form action="student" method="post" role="form"
+						commandName="student">
+						<form:errors path="*" cssClass="errorblock" element="div" />
 
 						<div class="form-group">
-							<label for="role">Role:</label> <select name="user.role"
-								class="form-control" id="role" required>
+							<label for="role">Role:</label>
+							<form:select path="user.role" class="form-control" id="role"
+								required="required">
 								<c:forEach var="role" items="${roles}">
 									<option value="${role.value}">${role.name}</option>
 								</c:forEach>
-							</select>
+							</form:select>
 						</div>
 
 						<div class="form-group">
-							<label for="courseType">Course Type:</label> <select
-								name="courseType" class="form-control" id="courseType"
-								placeholder="Enter Course Type" required>
+							<label for="courseType">Course Type:</label>
+							<form:select path="courseType" class="form-control"
+								id="courseType" placeholder="Enter Course Type"
+								required="required">
 								<option disabled selected></option>
 								<c:forEach var="course_type" items="${course_types}">
 									<option value="${course_type.value}">${course_type.name}</option>
 								</c:forEach>
-							</select>
+							</form:select>
 						</div>
 
 
 						<div class="form-group">
-							<label for="examinationName">Examination:</label> <select
-								name="examinationName" class="form-control" id="examinationName"
-								placeholder="Enter Examination Name" required>
+							<label for="examinationName">Examination:</label>
+							<form:select path="examinationName" class="form-control"
+								id="examinationName" placeholder="Enter Examination Name"
+								required="required">
 								<option disabled selected></option>
 								<c:forEach var="examination_name" items="${examination_names}">
 									<option value="${examination_name.value}">${examination_name.name}</option>
 								</c:forEach>
-							</select>
+							</form:select>
 						</div>
 
 						<div class="form-group ">
-							<label for="year">Year:</label> <input type="number"
-								class="form-control" name="year" id="year"
-								placeholder="Enter year" required>
+							<label for="year">Year:</label>
+							<form:input type="number" class="form-control" path="year"
+								id="year" placeholder="Enter year" required="required" />
 						</div>
 
 						<div class="form-group">
-							<label for="semesterName">Part/Semester:</label> <select
-								name="semesterName" class="form-control" id="semesterName"
-								placeholder="Enter semester Name" required>
+							<label for="semesterName">Part/Semester:</label>
+							<form:select path="semesterName" class="form-control"
+								id="semesterName" placeholder="Enter semester Name"
+								required="required">
 								<option disabled selected></option>
 								<c:forEach var="semester" items="${semesters}">
 									<option value="${semester.value}">${semester.name}</option>
 								</c:forEach>
-							</select>
+							</form:select>
 						</div>
 
 						<div class="form-group ">
-							<label for="year">Name:</label> <input type="text"
-								class="form-control" name="user.name" id="name"
-								placeholder="Enter Name" required>
+							<label for="year">Name:</label>
+							<form:input type="text" class="form-control" path="user.name"
+								id="name" placeholder="Enter Name" required="required" />
 						</div>
-						
+
 						<%--class readonly will prevent the form for submission if value is empty --%>
+
 						<div class="form-group ">
-							<label for="dateOfBirth">Date of Birth:</label> <input
-								type="text" class="form-control readonly" name="dateOfBirth"
-								id="datepicker" required>
+							<label for="dateOfBirth">Date of Birth:</label>
+							<form:input type="text" class="form-control readonly"
+								path="dateOfBirth" id="datepicker" required="required" />
 
 						</div>
 
 						<div class="form-group ">
-							<label for="placeOfBirth">Place of Birth:</label> <input
-								type="text" class="form-control" name="placeOfBirth.town"
-								id="placeOfBirth.town" placeholder="Enter Town" required>
-							<input type="text" class="form-control" name="placeOfBirth.distt"
-								id="placeOfBirth.distt" placeholder="Enter Distt" required>
-							<input type="text" class="form-control" name="placeOfBirth.state"
-								id="placeOfBirth.state" placeholder="Enter State" required>
+							<label for="placeOfBirth">Place of Birth:</label>
+							<form:input type="text" class="form-control"
+								path="placeOfBirth.town" id="placeOfBirth.town"
+								placeholder="Enter Town" required="required" />
+							<form:input type="text" class="form-control"
+								path="placeOfBirth.distt" id="placeOfBirth.distt"
+								placeholder="Enter Distt" required="required" />
+							<form:input type="text" class="form-control"
+								path="placeOfBirth.state" id="placeOfBirth.state"
+								placeholder="Enter State" required="required" />
 						</div>
 
 						<div class="form-group ">
-							<label for="year">Email Address:</label> <input type="email"
-								class="form-control" name="user.emailAddress"
-								id="user.emailAddress" placeholder="Enter Email Address"
-								required>
+							<label for="year">Email Address:</label>
+							<form:input type="email" class="form-control"
+								path="user.emailAddress" id="user.emailAddress"
+								placeholder="Enter Email Address" required="required" />
 						</div>
 
 						<div class="form-group ">
-							<label for="year">Nationality:</label> <input type="text"
-								class="form-control" name="nationality" id="nationality"
-								placeholder="Enter Nationality" required>
+							<label for="year">Nationality:</label>
+							<form:input type="text" class="form-control" path="nationality"
+								id="nationality" placeholder="Enter Nationality"
+								required="required" />
 						</div>
 
 						<div class="form-group ">
-							<label for="year">Religion:</label> <input type="text"
-								class="form-control" name="religion" id="religion"
-								placeholder="Enter Religion" required>
+							<label for="year">Religion:</label>
+							<form:input type="text" class="form-control" path="religion"
+								id="religion" placeholder="Enter Religion" required="required" />
 						</div>
 
 						<div class="form-group">
-							<label for="gender">Gender:</label> <select name="gender"
-								class="form-control" id="gender"
-								placeholder="Enter semester Name" required>
+							<label for="gender">Gender:</label>
+							<form:select path="gender" class="form-control" id="gender"
+								placeholder="Enter semester Name" required="required">
 								<option disabled selected></option>
 								<c:forEach var="gender" items="${genders}">
 									<option value="${gender.value}">${gender.name}</option>
 								</c:forEach>
-							</select>
+							</form:select>
 						</div>
 
 						<div class="form-group ">
-							<label for="fatherName">Father's Name:</label> <input type="text"
-								class="form-control" name="fatherName" id="fatherName"
-								placeholder="Enter Father Name" required>
+							<label for="fatherName">Father's Name:</label>
+							<form:input type="text" class="form-control" path="fatherName"
+								id="fatherName" placeholder="Enter Father Name"
+								required="required" />
 						</div>
 
 						<div class="form-group ">
-							<label for="motherName">Mother's Name:</label> <input type="text"
-								class="form-control" name="motherName" id="motherName"
-								placeholder="Enter Mother Name" required>
+							<label for="motherName">Mother's Name:</label>
+							<form:input type="text" class="form-control" path="motherName"
+								id="motherName" placeholder="Enter Mother Name"
+								required="required" />
 						</div>
 
 						<div class="form-group ">
-							<label for="spouseName">Spouse's Name:</label> <input type="text"
-								class="form-control" name="spouseName" id="spouseName"
-								placeholder="Enter Spouse Name" required>
+							<label for="spouseName">Spouse's Name:</label>
+							<form:input type="text" class="form-control" path="spouseName"
+								id="spouseName" placeholder="Enter Spouse Name"
+								required="required" />
 						</div>
 
 						<div class="form-group ">
-							<label for="mobileNumber">Mobile Number:</label> <input
-								type="number" class="form-control" name="mobileNumber"
-								id="mobileNumber" placeholder="Enter Mobile Number" required>
+							<label for="mobileNumber">Mobile Number:</label>
+							<form:input type="number" class="form-control"
+								path="mobileNumber" id="mobileNumber"
+								placeholder="Enter Mobile Number" required="required" />
 						</div>
 
 						<div class="form-group ">
 							<label for="correspondenceAddress">Correspondence
-								Address:</label> <input type="text" class="form-control"
-								name="correspondenceAddress.street"
+								Address:</label>
+							<form:input type="text" class="form-control"
+								path="correspondenceAddress.street"
 								id="correspondenceAddress.street" placeholder="Enter Street"
-								required> <input type="text" class="form-control"
-								name="correspondenceAddress.city"
+								required="required" />
+							<form:input type="text" class="form-control"
+								path="correspondenceAddress.city"
 								id="correspondenceAddress.city" placeholder="Enter City"
-								required> <input type="text" class="form-control"
-								name="correspondenceAddress.state"
+								required="required" />
+							<form:input type="text" class="form-control"
+								path="correspondenceAddress.state"
 								id="correspondenceAddress.state" placeholder="Enter State"
-								required> <input type="number" class="form-control"
-								name="correspondenceAddress.pincode"
+								required="required" />
+							<form:input type="number" class="form-control"
+								path="correspondenceAddress.pincode"
 								id="correspondenceAddress.pincode" placeholder="Enter Pincode"
-								required>
+								required="required" />
 						</div>
 
 						<div class="form-group ">
-							<label for="permanenteAddress">Permanent Address:</label> <input
-								type="text" class="form-control" name="permanentAddress.street"
-								id="permanentAddress.street" placeholder="Enter Street" required>
-							<input type="text" class="form-control"
-								name="permanentAddress.city" id="permanentAddress.city"
-								placeholder="Enter City" required> <input type="text"
-								class="form-control" name="permanentAddress.state"
-								id="permanentAddress.state" placeholder="Enter State" required>
-							<input type="number" class="form-control"
-								name="permanentAddress.pincode" id="permanentAddress.pincode"
-								placeholder="Enter Pincode" required>
+							<label for="permanenteAddress">Permanent Address:</label>
+							<form:input type="text" class="form-control"
+								path="permanentAddress.street" id="permanentAddress.street"
+								placeholder="Enter Street" required="required" />
+							<form:input type="text" class="form-control"
+								path="permanentAddress.city" id="permanentAddress.city"
+								placeholder="Enter City" required="required" />
+							<form:input type="text" class="form-control"
+								path="permanentAddress.state" id="permanentAddress.state"
+								placeholder="Enter State" required="required" />
+							<form:input type="number" class="form-control"
+								path="permanentAddress.pincode" id="permanentAddress.pincode"
+								placeholder="Enter Pincode" required="required" />
 						</div>
 
 
 						<div class="form-group">
-							<label for="mediumOfExamination">Medium of Examination:</label> <select
-								name="mediumOfExamination" class="form-control"
+							<label for="mediumOfExamination">Medium of Examination:</label>
+							<form:select path="mediumOfExamination" class="form-control"
 								id="mediumOfExamination" placeholder="Enter mediumOfExamination"
-								required>
+								required="required">
 								<option disabled selected></option>
 								<c:forEach var="medium_of_examination"
 									items="${medium_of_examinations}">
 									<option value="${medium_of_examination.value}">${medium_of_examination.name}</option>
 								</c:forEach>
-							</select>
+							</form:select>
 						</div>
 
 						<div class="form-group ">
-							<label for="enrollmentNumber">Enrollment Number:</label> <input
-								type="text" class="form-control" name="enrollmentNumber"
-								id="enrollmentNumber" placeholder="Enter Enrollment Number"
-								required>
+							<label for="enrollmentNumber">Enrollment Number:</label>
+							<form:input type="text" class="form-control"
+								path="enrollmentNumber" id="enrollmentNumber"
+								placeholder="Enter Enrollment Number" required="required" />
 						</div>
 
 						<div class="form-group ">
-							<label for="studentId">Student Id:</label> <input type="number"
-								class="form-control" name="studentId" id="studentId"
-								placeholder="Enter student Id" required>
+							<label for="studentId">Student Id:</label>
+							<form:input type="number" class="form-control" path="studentId"
+								id="studentId" placeholder="Enter student Id"
+								required="required" />
 						</div>
 
 						<div class="form-group">
-							<label for="quotaFlag">Belong to S.C/S.T/O.B.C:</label> <select
-								name="quotaFlag" class="form-control" id="quotaFlag"
-								placeholder="Enter quota" required>
+							<label for="quotaFlag">Belong to S.C/S.T/O.B.C:</label>
+							<form:select path="quotaFlag" class="form-control" id="quotaFlag"
+								placeholder="Enter quota" required="required">
 								<option disabled selected></option>
 								<c:forEach var="flag" items="${flags}">
 									<option value="${flag.value}">${flag.name}</option>
 								</c:forEach>
-							</select>
+							</form:select>
 						</div>
 
 						<p align="left">
 							<strong> Below Details are to be entered by Student.</strong>
 						</p>
 
-						
+
 						<button type="submit" value="Submit" name="add"
 							class="btn btn-info active">Submit</button>
 						<a href="adminHome" class="btn btn-info" role="button">Back</a>
 
-
-
-					</form>
+					</form:form>
 
 
 				</div>

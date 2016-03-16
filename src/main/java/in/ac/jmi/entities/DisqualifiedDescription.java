@@ -1,12 +1,19 @@
 package in.ac.jmi.entities;
 
+import in.ac.jmi.constants.Flag;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="DISQUALIFIED_DESCRIPTION")
 public class DisqualifiedDescription extends BaseEntity{
+	
+	@Column(name = "DISQUALIFIED_FLAG")
+	@NotNull(message="Disqualified flag can not be left blank")
+	private Flag disqualifiedFlag;
 	
 	@Column(name="PREVIOUS_UNIVERSITY_BOARD_NAME")
 	private String previousUniversityBoardName;
@@ -78,16 +85,30 @@ public class DisqualifiedDescription extends BaseEntity{
 		this.periodOfPunishment = periodOfPunishment;
 	}
 
+	
+	public Flag getDisqualifiedFlag() {
+		return disqualifiedFlag;
+	}
+
+
+
+	public void setDisqualifiedFlag(Flag disqualifiedFlag) {
+		this.disqualifiedFlag = disqualifiedFlag;
+	}
+
+
 	@Override
 	public String toString() {
-		return "\nDisqualifiedDescription [previousUniversityBoardName="
+		return "DisqualifiedDescription [disqualifiedFlag=" + disqualifiedFlag
+				+ ", previousUniversityBoardName="
 				+ previousUniversityBoardName + ", previousExaminationName="
 				+ previousExaminationName + ", previousYear=" + previousYear
 				+ ", previousEnrollmentNumber=" + previousEnrollmentNumber
 				+ ", previousRollNumber=" + previousRollNumber
 				+ ", periodOfPunishment=" + periodOfPunishment + "]";
 	}
-	
+
+
 		
 }
 	

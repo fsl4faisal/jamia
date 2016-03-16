@@ -233,8 +233,8 @@
 						<div class="form-group">
 							<label for="disqualifiedFlag">Were you ever rustigated/
 								expelled/ disqualified/ debarred from appearing at the
-								examination?</label> <select name="disqualifiedFlag"
-								class="form-control" id="disqualifiedFlag"
+								examination?</label> <select name="disqualifiedDescription.disqualifiedFlag"
+								class="form-control" id="disqualifiedDescription.disqualifiedFlag"
 								placeholder="Enter yes if disqualified" required>
 								<option disabled selected></option>
 								<c:forEach var="flag" items="${flags}">

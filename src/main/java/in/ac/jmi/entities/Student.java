@@ -19,29 +19,41 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
+import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "STUDENT")
 public class Student extends UrlEntity {
 
+	@Column(name = "COURSE_TYPE", nullable = false)
+	@NotNull(message = "Course Type can not be left blank")
+	private CourseType courseType;
+
 	@OneToOne(cascade = CascadeType.ALL, optional = false)
 	@JoinColumn(name = "STUDENT_USER")
 	private User user;
 
 	@Column(name = "EXAMINATION_NAME", nullable = false)
+	@NotNull(message = "Examination Name can not be left blank")
 	private ExaminationName examinationName;
 
 	@Column(name = "SEMESTER_NAME", nullable = false)
+	@NotNull(message = "Semester Name can not be left blank")
 	private Semester semesterName;
 
 	@Column(name = "YEAR", nullable = false)
+	@Range(min = 2016, max = 2017, message = "year must be in between 2016 and 2017")
 	private short year;
 
 	@Column(name = "DATE_OF_BIRTH", nullable = false)
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "MM/dd/yyyy")
+	@NotNull(message = "Date of Birth can not be left blank")
 	private Date dateOfBirth;
 
 	@OneToOne(cascade = CascadeType.ALL, optional = false)
@@ -49,21 +61,27 @@ public class Student extends UrlEntity {
 	private PlaceOfBirth placeOfBirth;
 
 	@Column(name = "NATIONALITY", nullable = false)
+	@NotEmpty(message = "Nationality can not be empty")
 	private String nationality;
 
 	@Column(name = "RELIGION", nullable = false)
+	@NotEmpty(message = "Religion can not be empty")
 	private String religion;
 
 	@Column(name = "GENDER", nullable = false)
+	@NotNull(message = "Gender can not be left blank")
 	private Gender gender;
 
 	@Column(name = "FATHER_NAME", nullable = false)
+	@NotEmpty(message = "Father's name can not be empty")
 	private String fatherName;
 
 	@Column(name = "MOTHER_NAME", nullable = false)
+	@NotEmpty(message = "Mother's Name can not be empty")
 	private String motherName;
 
 	@Column(name = "SPOUSE_NAME", nullable = false)
+	@NotEmpty(message = "Spouse's Name can not be empty")
 	private String spouseName;
 
 	@OneToOne(cascade = CascadeType.ALL, optional = false)
@@ -75,19 +93,20 @@ public class Student extends UrlEntity {
 	private Address permanentAddress;
 
 	@Column(name = "MOBILE_NUMBER", nullable = false)
+	@Pattern(regexp = "[\\d]{10}", message = "Mobile number can only be 10 digits number")
 	private String mobileNumber;
 
 	@Column(name = "MEDIUM_OF_EXAMINATION", nullable = false)
+	@NotNull(message = "Medium of examination can not be left blank")
 	private MediumOfExamination mediumOfExamination;
 
+	@NotEmpty(message = "Enrollment Number can not be empty")
 	@Column(name = "ENROLLMENT_NUMBER", nullable = false)
 	private String enrollmentNumber;
 
 	@Column(name = "QUOTA_FLAG", nullable = false)
+	@NotNull(message = "Quota flag can not be left blank")
 	private Flag quotaFlag;
-
-	@Column(name = "DISQUALIFIED_FLAG")
-	private Flag disqualifiedFlag;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "STUDENT_DISQUALIFIED_DESCRIPTION")
@@ -98,14 +117,10 @@ public class Student extends UrlEntity {
 
 	@Column(name = "APPROVED_BY_HOD")
 	private Flag approveByHodFlag;
-	
-	//TODO
-	@Column(name="COURSE_TYPE",nullable=false)
-	private CourseType courseType;
-	
-	@Column(name="STUDENT_ID",nullable=false)
-	private int studentId;
 
+	@Column(name = "STUDENT_ID", nullable = false)
+	@Pattern(regexp = "[\\d]{6}", message = "Student id can be 6 digits number only")
+	private String studentId;
 
 	public Student() {
 	}
@@ -254,14 +269,6 @@ public class Student extends UrlEntity {
 		this.quotaFlag = quotaFlag;
 	}
 
-	public Flag getDisqualifiedFlag() {
-		return disqualifiedFlag;
-	}
-
-	public void setDisqualifiedFlag(Flag disqualifiedFlag) {
-		this.disqualifiedFlag = disqualifiedFlag;
-	}
-
 	public DisqualifiedDescription getDisqualifiedDescription() {
 		return disqualifiedDescription;
 	}
@@ -287,8 +294,6 @@ public class Student extends UrlEntity {
 		this.approveByHodFlag = approveByHodFlag;
 	}
 
-	
-	
 	public CourseType getCourseType() {
 		return courseType;
 	}
@@ -297,11 +302,11 @@ public class Student extends UrlEntity {
 		this.courseType = courseType;
 	}
 
-	public int getStudentId() {
+	public String getStudentId() {
 		return studentId;
 	}
 
-	public void setStudentId(int studentId) {
+	public void setStudentId(String studentId) {
 		this.studentId = studentId;
 	}
 
@@ -318,12 +323,10 @@ public class Student extends UrlEntity {
 				+ permanentAddress + ", mobileNumber=" + mobileNumber
 				+ ", mediumOfExamination=" + mediumOfExamination
 				+ ", enrollmentNumber=" + enrollmentNumber + ", quotaFlag="
-				+ quotaFlag + ", disqualifiedFlag=" + disqualifiedFlag
-				+ ", disqualifiedDescription=" + disqualifiedDescription
-				+ ", subjectTaken=" + subjectTaken + ", approveByHodFlag="
-				+ approveByHodFlag + ", courseType=" + courseType
-				+ ", studentId=" + studentId + "]";
+				+ quotaFlag + ", disqualifiedDescription="
+				+ disqualifiedDescription + ", subjectTaken=" + subjectTaken
+				+ ", approveByHodFlag=" + approveByHodFlag + ", courseType="
+				+ courseType + ", studentId=" + studentId + "]";
 	}
 
-	
 }

@@ -208,7 +208,7 @@
 							
 							<tr>
 								<th scope="row">Were you ever rustigated/ expelled/ disqualified/ debarred from appearing at the examination?</th>
-								<td>${student.disqualifiedFlag.name}</td>
+								<td>${student.disqualifiedDescription.disqualifiedFlag.name}</td>
 							</tr>
 
 						</tbody>

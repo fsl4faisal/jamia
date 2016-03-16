@@ -14,11 +14,14 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -28,7 +31,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class StudentController {
-	
+
 	@Autowired
 	private StudentRepository studentRepository;
 
@@ -36,7 +39,7 @@ public class StudentController {
 	 * 
 	 * Student CRUD
 	 */
-	
+
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
@@ -53,20 +56,42 @@ public class StudentController {
 				MediumOfExamination.values());
 		model.addAttribute("semesters", Semester.values());
 		model.addAttribute("course_types", CourseType.values());
-
 		ArrayList<Role> roles = new ArrayList<Role>();
 		roles.add(Role.STUDENT);
 		model.addAttribute("roles", roles);
+
+		model.addAttribute("student", new Student());
 
 		return "student/add";
 	}
 
 	@RequestMapping(value = "/student", params = "add", method = RequestMethod.POST)
-	public String postAddStudent(@ModelAttribute Student student) {
-		System.out.println("Inside postAddStudent");
-		System.out.println(student);
-		student = studentRepository.save(student);
-		return "redirect:student?id=" + student.getId();
+	public String postAddStudent(@ModelAttribute @Valid Student student,
+			BindingResult result, Model model) {
+
+		if (result.hasErrors()) {
+			System.out.println(result.getAllErrors().toString());
+
+			model.addAttribute("examination_names", ExaminationName.values());
+			model.addAttribute("flags", Flag.values());
+			model.addAttribute("genders", Gender.values());
+			model.addAttribute("medium_of_examinations",
+					MediumOfExamination.values());
+			model.addAttribute("semesters", Semester.values());
+			model.addAttribute("course_types", CourseType.values());
+			ArrayList<Role> roles = new ArrayList<Role>();
+			roles.add(Role.STUDENT);
+			model.addAttribute("roles", roles);
+
+			return "student/add";
+		} else {
+			System.out.println("Inside postAddStudent");
+			System.out.println(student);
+			student = studentRepository.save(student);
+			return "redirect:student?id=" + student.getId();
+
+		}
+
 	}
 
 	@RequestMapping(value = "/student", method = RequestMethod.GET)
@@ -159,7 +184,6 @@ public class StudentController {
 	public String postEditRustigatedDetails(@ModelAttribute Student student) {
 		Student updatedStudent = studentRepository.findOne(student.getId());
 
-		updatedStudent.setDisqualifiedFlag(student.getDisqualifiedFlag());
 		updatedStudent.setDisqualifiedDescription(student
 				.getDisqualifiedDescription());
 		System.out.println("Inside postEditRustigatedDetails");
@@ -176,6 +200,5 @@ public class StudentController {
 		model.addAttribute("student", studentRepository.findOne(id));
 		return "student/view_all";
 	}
-
 
 }

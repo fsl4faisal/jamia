@@ -4,7 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 
 
 @Entity
@@ -12,15 +12,15 @@ import org.hibernate.validator.constraints.NotBlank;
 public class PlaceOfBirth extends BaseEntity{
 	
 	@Column(name="TOWN",nullable=false)
-	@NotBlank
+	@NotEmpty(message="Town can not be empty")
 	private String town;
 	
 	@Column(name="DISTT",nullable=false)
-	@NotBlank
+	@NotEmpty(message="Distt. can not be empty")
 	private String distt;
 	
 	@Column(name="STATE",nullable=false)
-	@NotBlank
+	@NotEmpty(message="State can not be empty")
 	private String state;
 
 	public PlaceOfBirth(){}
