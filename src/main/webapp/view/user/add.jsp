@@ -49,7 +49,7 @@
 							<label for="user">User Name:</label>
 
 							<form:input type="text" class="form-control" path="name"
-								id="name" placeholder="Enter User Name" />
+								id="name" placeholder="Enter User Name" required="requried"/>
 
 						</div>
 

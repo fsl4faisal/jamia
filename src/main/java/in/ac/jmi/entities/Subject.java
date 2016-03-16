@@ -7,24 +7,32 @@ import in.ac.jmi.constants.Semester;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "SUBJECT")
 public class Subject extends BaseEntity {
 
 	@Column(name = "PAPER_NUMBER")
+	@NotEmpty(message="Paper Number can not be empty")
 	private String paperNumber;
 
 	@Column(name = "PAPER_NAME")
+	@NotEmpty(message="Paper Name can not be empty")
 	private String paperName;
 
 	@Column(name = "PAPER_CATEGORY")
+	@NotNull(message="Paper Category can not be left blank")
 	private PaperCategory paperCategory;
 
 	@Column(name = "PAPER_SEMESTER")
+	@NotNull(message="Paper Category can not be left blank")
 	private Semester paperSemester;
 	
 	@Column(name = "DEPARTMENT_NAME")
+	@NotNull(message="Paper Category can not be left blank")
 	private DepartmentName departmentName;
 
 	public Subject() {
