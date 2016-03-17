@@ -24,11 +24,10 @@ public class Address extends BaseEntity{
 	@NotEmpty(message="State can not be empty")
 	private String state;
 	
-	//NotNull is for int 
 	@Column(name="PINCODE",nullable=false)
+	@NotEmpty(message="Pincode can not be left blank")//HV000030: No validator could be found for type: java.lang.Integer.
 	@Pattern(regexp = "[\\d]{6}", message = "Pincode can only be 6 digits number")
-	//@NotNull(message="Pincode can not be left blank")
-	private int pincode;
+	private String pincode;
 
 	public Address(){}
 	
@@ -44,7 +43,7 @@ public class Address extends BaseEntity{
 		return state;
 	}
 
-	public int getPincode() {
+	public String getPincode() {
 		return pincode;
 	}
 
@@ -62,7 +61,7 @@ public class Address extends BaseEntity{
 		this.state = state;
 	}
 
-	public void setPincode(int pincode) {
+	public void setPincode(String pincode) {
 		this.pincode = pincode;
 	}
 
