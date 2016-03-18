@@ -112,7 +112,7 @@ public class Student extends UrlEntity {
 	private String enrollmentNumber;
 
 	@Column(name = "QUOTA_FLAG", nullable = false)
-	@NotNull(message = "Belong to S.C/S.T/O.B.C: Quota flag can not be left blank")
+	@NotNull(message = "Belong to S.C/S.T/O.B.C: Field can not be left blank")
 	private Flag quotaFlag;
 
 	@OneToOne(cascade = CascadeType.ALL)
