@@ -16,23 +16,23 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Subject extends BaseEntity {
 
 	@Column(name = "PAPER_NUMBER")
-	@NotEmpty(message="Paper Number can not be empty")
+	@NotEmpty(message="Paper Number: Paper Number can not be empty")
 	private String paperNumber;
 
 	@Column(name = "PAPER_NAME")
-	@NotEmpty(message="Paper Name can not be empty")
+	@NotEmpty(message="Paper Name: Paper Name can not be empty")
 	private String paperName;
 
 	@Column(name = "PAPER_CATEGORY")
-	@NotNull(message="Paper Category can not be left blank")
+	@NotNull(message="Paper Category: Paper Category can not be left blank")
 	private PaperCategory paperCategory;
 
 	@Column(name = "PAPER_SEMESTER")
-	@NotNull(message="Paper Category can not be left blank")
+	@NotNull(message="Paper Semster: Paper Semster can not be left blank")
 	private Semester paperSemester;
 	
 	@Column(name = "DEPARTMENT_NAME")
-	@NotNull(message="Paper Category can not be left blank")
+	@NotNull(message="Department Name: Department Name can not be left blank")
 	private DepartmentName departmentName;
 
 	public Subject() {

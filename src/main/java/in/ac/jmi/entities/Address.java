@@ -3,7 +3,6 @@ package in.ac.jmi.entities;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -13,20 +12,20 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Address extends BaseEntity{
 	
 	@Column(name="STREET",nullable=false)
-	@NotEmpty(message="Street can not be empty")
+	@NotEmpty(message="Street: Street can not be empty")
 	private String street;
 	
 	@Column(name="CITY",nullable=false)
-	@NotEmpty(message="City can not be empty")
+	@NotEmpty(message="City: City can not be empty")
 	private String city;
 	
 	@Column(name="STATE",nullable=false)
-	@NotEmpty(message="State can not be empty")
+	@NotEmpty(message="State: State can not be empty")
 	private String state;
 	
 	@Column(name="PINCODE",nullable=false)
-	@NotEmpty(message="Pincode can not be left blank")//HV000030: No validator could be found for type: java.lang.Integer.
-	@Pattern(regexp = "[\\d]{6}", message = "Pincode can only be 6 digits number")
+	@NotEmpty(message="Pincode:Pincode can not be left blank")//HV000030: No validator could be found for type: java.lang.Integer.
+	@Pattern(regexp = "[\\d]{6}", message = "Pincode: Pincode can only be 6 digits number")
 	private String pincode;
 
 	public Address(){}

@@ -14,15 +14,15 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class User extends UrlEntity{
 	
 	@Column(name="NAME", nullable = false)
-	@NotEmpty(message="Name can not be empty")
+	@NotEmpty(message="Name: Name can not be empty")
 	private String name;
 	
 	@Column(name="ROLE", nullable = false)
-	@NotNull(message="Role can not be left blank")
+	@NotNull(message="Role: Role can not be left blank")
 	private Role role;
 	
 	@Column(name = "EMAIL_ADDRESS", nullable = false)
-	@NotEmpty(message="email address can not be empty")
+	@NotEmpty(message="Email Address: email address can not be empty")
 	private String emailAddress;
 	
 	public User(){}

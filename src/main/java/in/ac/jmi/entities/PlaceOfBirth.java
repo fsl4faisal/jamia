@@ -12,15 +12,15 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class PlaceOfBirth extends BaseEntity{
 	
 	@Column(name="TOWN",nullable=false)
-	@NotEmpty(message="Town can not be empty")
+	@NotEmpty(message="Town: Town can not be empty")
 	private String town;
 	
 	@Column(name="DISTT",nullable=false)
-	@NotEmpty(message="Distt. can not be empty")
+	@NotEmpty(message="Distt: Distt. can not be empty")
 	private String distt;
 	
 	@Column(name="STATE",nullable=false)
-	@NotEmpty(message="State can not be empty")
+	@NotEmpty(message="State: State can not be empty")
 	private String state;
 
 	public PlaceOfBirth(){}
